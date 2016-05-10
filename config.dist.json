@@ -1,5 +1,5 @@
 {
   "database": "http://localhost:5984/ilayer",
-  "username": "admin",
-  "password": "pass"
+  "username": "",
+  "password": ""
 }

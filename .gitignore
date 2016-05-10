@@ -3,4 +3,6 @@
 .idea
 .tmp
 node_modules
+bower_components
 config.json
+service-types/couchapp/lib/vendor

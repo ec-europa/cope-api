@@ -25,6 +25,7 @@ The default configuration can be found in _config.dist.json_. You can override i
 If you want to build the whole project, run the two following commands. Otherwise, see further explanations.
 
 ```bash
+npm run prepare
 npm run build
 npm run push
 ```
@@ -82,8 +83,9 @@ npm run push:service-remote-browser
 Provide list of types and json schema
 
 ```bash
-npm run build:facade
-npm run push:facade
+npm run prepare:service-types
+npm run build:service-types
+npm run push:service-types
 ```
 
 ## Usage
