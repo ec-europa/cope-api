@@ -38,6 +38,7 @@
   "devDependencies": {
     "grunt": "^1.0.1",
     "grunt-couch": "^1.5.1",
+    "lodash": "^4.12.0",
     "npm-run-all": "^1.8.0"
   }
 }
