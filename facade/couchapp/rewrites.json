@@ -8,7 +8,7 @@
     "to":"static/*"
   },
   {
-    "from":"/beta/docs/:type",
+    "from":"/beta/docs/types/:type",
     "to":"../service-document/_update/updateDocument/",
     "method":"POST",
     "documentation":{
@@ -24,7 +24,7 @@
     }
   },
   {
-    "from":"/beta/docs/:type",
+    "from":"/beta/docs/types/:type",
     "to":"../service-document/_list/listDocuments/docs",
     "query":{
       "key": ":type",
@@ -40,7 +40,7 @@
     }
   },
   {
-    "from":"/beta/docs/:type/latest",
+    "from":"/beta/docs/types/:type/latest",
     "to":"../service-document/_list/listDocuments/:type",
     "query":{
       "descending":"true"
@@ -55,7 +55,7 @@
     }
   },
   {
-    "from":"/beta/docs/:type/:uuid",
+    "from":"/beta/docs/types/:type/:uuid",
     "to":"../service-document/_show/showDocs/:uuid",
     "method":"GET",
     "documentation":{
@@ -70,7 +70,7 @@
     }
   },
   {
-    "from":"/beta/docs/:type/:uuid",
+    "from":"/beta/docs/types/:type/:uuid",
     "to":"../service-document/_update/updateDocument/:uuid",
     "method":"PUT",
     "documentation":{
@@ -85,7 +85,7 @@
     }
   },
   {
-    "from":"/beta/docs/:type/:uuid",
+    "from":"/beta/docs/types/:type/:uuid",
     "to":"../service-document/_update/deleteDocument/:uuid",
     "method":"DELETE",
     "documentation":{
@@ -182,7 +182,7 @@
     "method":"GET"
   },
   {
-    "from":"/beta/docs/:type/producer/:producer",
+    "from":"/beta/docs/types/:type/producer/:producer",
     "to":"../service-document/_view/docs",
     "query":{
       "descending": "true",
