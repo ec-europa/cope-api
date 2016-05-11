@@ -69,7 +69,7 @@ function(newDoc, oldDoc, userCtx) {
     }
 
     // load the validator
-    var validator = require('lib/vendor/tv4/tv4.min').tv4;
+    var validator = require('lib/vendor/tv4/tv4').tv4;
 
     // validate against generic schema
     var generic_schema = require('lib/schemas/generic');

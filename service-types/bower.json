@@ -1,0 +1,7 @@
+{
+  "name": "service-types",
+  "private": true,
+  "dependencies": {
+    "tv4": "^1.2.7"
+  }
+}

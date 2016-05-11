@@ -1,10 +1,12 @@
 module.exports = function(grunt) {
 
+  var defaults = require('lodash/defaults');
+
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     settings: grunt.file.exists('config.json') ?
-      grunt.file.readJSON('config.json') :
+      defaults(grunt.file.readJSON('config.json'), grunt.file.readJSON('config.dist.json')) :
       grunt.file.readJSON('config.dist.json'),
     'couch-compile': {
       facade: {
@@ -45,8 +47,8 @@ module.exports = function(grunt) {
     },
     'couch-push': {
       options: {
-        // user: 'karin',
-        // pass: 'secure'
+        user: '<%= settings.username %>',
+        pass: '<%= settings.password %>'
       },
       facade: {
         files: {
