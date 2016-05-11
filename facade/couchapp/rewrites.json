@@ -8,65 +8,69 @@
     "to":"static/*"
   },
   {
-    "from":"/beta/articles",
+    "from":"/beta/docs/:type",
     "to":"../service-document/_update/updateDocument/",
     "method":"POST",
     "documentation":{
-      "title":"Post article",
-      "description":"Create an article document",
+      "title":"Post document",
+      "description":"Create a :type document",
       "headers":{
         "Authorization":"basic",
         "content-type":"application/json"
       },
       "params":{
-        "data":"The article to be inserted"
+        "data":"The document to be inserted"
       }
     }
   },
   {
-    "from":"/beta/articles",
-    "to":"../service-document/_list/listDocuments/articles",
+    "from":"/beta/docs/:type",
+    "to":"../service-document/_list/listDocuments/docs",
+    "query":{
+      "key": ":type",
+      "descending":"true"
+    },
     "method":"GET",
     "documentation":{
-      "title":"Get articles",
-      "description":"Fetch articles",
+      "title":"Get documents",
+      "description":"Fetch :type document",
       "headers":{
         "content-type":"application/json"
       }
     }
   },
   {
-    "from":"/beta/articles/latest",
-    "to":"../service-document/_list/listDocuments/articles",
+    "from":"/beta/docs/:type/latest",
+    "to":"../service-document/_list/listDocuments/:type",
     "query":{
       "descending":"true"
     },
     "method":"GET",
     "nodocumentation":{
-      "title":"Get latest articles",
-      "description":"Fetch the lastest articles",
+      "title":"Get latest :type",
+      "description":"Fetch the lastest :type",
       "headers":{
         "content-type":"application/json"
       }
     }
   },
   {
-    "from":"/beta/articles/:uuid",
-    "to":"../service-document/_show/showArticles/:uuid",
+    "from":"/beta/docs/:type/:uuid",
+    "to":"../service-document/_show/showDocs/:uuid",
     "method":"GET",
     "documentation":{
-      "title":"Get article",
-      "description":"Fetch a given article based on :uuid",
+      "title":"Get docs",
+      "description":"Fetch a given doc based on :uuid",
       "headers":{
         "content-type":"application/json"
       },
       "params":{
-        ":uuid":"The unique id of the article to be retrieved"
+        ":uuid":"The unique id of the doc to be retrieved"
       }
     }
   },
   {
-    "from":"/beta/articles/:uuid",
+    "from":"/beta/docs/:type/:uuid",
     "to":"../service-document/_update/updateDocument/:uuid",
     "method":"PUT",
     "documentation":{
@@ -81,12 +85,12 @@
     }
   },
   {
-    "from":"/beta/articles/:uuid",
+    "from":"/beta/docs/:type/:uuid",
     "to":"../service-document/_update/deleteDocument/:uuid",
     "method":"DELETE",
     "documentation":{
-      "title":"Delete article",
-      "description":"Delete an article for a given :uuid",
+      "title":"Delete document",
+      "description":"Delete a document for a given :uuid",
       "headers":{
         "content-type":"application/json"
       },
@@ -178,11 +182,14 @@
     "method":"GET"
   },
   {
-    "from":"/beta/articles/producer/:producer",
-    "to":"../service-document/_view/articles",
+    "from":"/beta/docs/:type/producer/:producer",
+    "to":"../service-document/_view/docs",
     "query":{
-      "key":":producer",
-      "descending":"true"
+      "descending": "true",
+      "key":[
+        ":type",
+        ":producer"
+      ],
     },
     "method":"GET",
     "documentation":{
