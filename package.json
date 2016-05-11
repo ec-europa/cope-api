@@ -15,8 +15,10 @@
     "push:service-redirection": "grunt couch-push:service-redirection",
     "build:service-remote-browser": "grunt couch-compile:service-remote-browser",
     "push:service-remote-browser": "grunt couch-push:service-remote-browser",
+    "prepare:service-types": "cd service-types && bower install",
     "build:service-types": "grunt couch-compile:service-types",
     "push:service-types": "grunt couch-push:service-types",
+    "prepare": "npm-run-all --parallel prepare:*",
     "build": "npm-run-all --parallel build:*",
     "push": "npm-run-all --parallel push:*"
   },
@@ -36,8 +38,10 @@
   },
   "homepage": "https://github.com/ec-europa/integration-layer-backend#readme",
   "devDependencies": {
+    "bower": "^1.7.9",
     "grunt": "^1.0.1",
     "grunt-couch": "^1.5.1",
+    "lodash": "^4.12.0",
     "npm-run-all": "^1.8.0"
   }
 }
