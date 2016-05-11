@@ -87,8 +87,23 @@ npm run prepare:service-types
 npm run build:service-types
 npm run push:service-types
 ```
+## Managing front-end dependencies
+
+We use Bower internally to manage front-end dependencies. Each service can have
+its own _bower.json_ - in which we declare the dependencies - and _.bowerrc_ to
+specify the directory in which we want to store the dependencies. We then use
+the `prepare:*` npm task to run the `bower install` command in the right place.
+
+For more details, you can see how we manage service-types' dependencies. We
+have defined a [bower.json](./service-types/bower.json) configuration file as
+well as a [.bowerrc](./service-types/.bowerrc) and we also have a npm script
+defined in [package.json](./package.json):
+
+```json
+  "prepare:service-types": "cd service-types && bower install"
+```
 
 ## Usage
 
 To start, follow the route exposed by the facade. By default, it should be
-http://localhost:5984/ilayer/_design/facade/_rewrite/beta
+[http://localhost:5984/ilayer/_design/facade/_rewrite/beta]()
