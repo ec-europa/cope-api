@@ -182,7 +182,7 @@
     "method":"GET"
   },
   {
-    "from":"/beta/docs/types/:type/producer/:producer",
+    "from":"/beta/docs/types/:type/producers/:producer",
     "to":"../service-document/_view/docs",
     "query":{
       "descending": "true",
