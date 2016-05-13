@@ -189,7 +189,7 @@
       "key":[
         ":type",
         ":producer"
-      ],
+      ]
     },
     "method":"GET",
     "documentation":{
