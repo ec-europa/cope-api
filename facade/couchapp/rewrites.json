@@ -19,6 +19,7 @@
         "content-type":"application/json"
       },
       "params":{
+        ":type":"The document type",
         "data":"The document to be inserted"
       }
     }
@@ -36,6 +37,9 @@
       "description":"Fetch :type document",
       "headers":{
         "content-type":"application/json"
+      },
+      "params":{
+        ":type":"The document type"
       }
     }
   },
@@ -51,6 +55,9 @@
       "description":"Fetch the lastest :type",
       "headers":{
         "content-type":"application/json"
+      },
+      "params":{
+        ":type":"The document type"
       }
     }
   },
@@ -65,6 +72,7 @@
         "content-type":"application/json"
       },
       "params":{
+        ":type":"The document type",
         ":uuid":"The unique id of the doc to be retrieved"
       }
     }
@@ -80,6 +88,7 @@
         "content-type":"application/json"
       },
       "params":{
+        ":type":"The document type",
         ":uuid":"the unique id of the content"
       }
     }
@@ -95,6 +104,7 @@
         "content-type":"application/json"
       },
       "params":{
+        ":type":"The document type",
         ":uuid":"the unique id of the content"
       }
     }
@@ -167,7 +177,7 @@
     "method":"GET",
     "documentation":{
       "title":"Get types",
-      "description":"Fetch the list of content types",
+      "description":"Fetch the list of valid content types",
       "headers":{
         "content-type":"application/json"
       }
@@ -199,6 +209,7 @@
         "content-type":"application/json"
       },
       "params":{
+        ":type":"The document type",
         ":producer":"the producer id"
       }
     }
@@ -256,8 +267,8 @@
       "title":"Get teaser",
       "description":"Fetch the teaser for producer and type",
       "params":{
-        ":producer (optional)":"producer id",
-        ":type (optional)":"schema name"
+        ":producer":"producer id",
+        ":type":"schema name"
       }
     }
   },
@@ -298,8 +309,8 @@
       "title":"Get title",
       "description":"Fetch the title for producer and type",
       "params":{
-        ":producer (optional)":"producer id",
-        ":type (optional)":"schema name"
+        ":producer":"producer id",
+        ":type":"schema name"
       }
     }
   },
