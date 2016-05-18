@@ -48,8 +48,7 @@ exports.v1 = {
             "type": "array",
             "items": {
                 "type": "string",
-                "pattern": "^([a-z]{2}|und)$",                
-                "additionalProperties": false
+                "pattern": "^([a-z]{2}|und)$"
             }
         },
         "fields": {
