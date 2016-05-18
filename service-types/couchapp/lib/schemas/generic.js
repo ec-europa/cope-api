@@ -26,13 +26,11 @@ exports.v1 = {
             "type": "object",
             "patternProperties": {
                 "^([a-z]{2}|und)$": {
-                    "type": "array",
-                    "items": {
-                        "type": "string",
-                        "pattern": "(http|https):\\\/\\\/(\\w+:{0,1}\\w*@)?(\\S+)(:[0-9]+)?(\\\/|\\\/([\\w#!:.?+=&%@!\\-\\\/]))?"
-                    }
+                    "type": "string",
+                    "pattern": "(http|https):\\/\\/(\\w+:{0,1}\\w*@)?(\\S+)(:[0-9]+)?(\\/|\\/([\\w#!:.?+=&%@!\\-\\/]))?"
                 }
-            }
+            },
+            "additionalProperties": false
         },
         "created": {
             "type": "string",
@@ -50,9 +48,9 @@ exports.v1 = {
             "type": "array",
             "items": {
                 "type": "string",
-                "pattern": "^([a-z]{2}|und)$"
-            },
-            "additionalProperties": false
+                "pattern": "^([a-z]{2}|und)$",                
+                "additionalProperties": false
+            }
         },
         "fields": {
             "type": "object",
