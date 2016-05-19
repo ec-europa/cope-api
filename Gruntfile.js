@@ -1,13 +1,11 @@
 module.exports = function(grunt) {
 
-  var defaults = require('lodash/defaults');
+  var settings = require('./utils/config');
 
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-    settings: grunt.file.exists('config.json') ?
-      defaults(grunt.file.readJSON('config.json'), grunt.file.readJSON('config.dist.json')) :
-      grunt.file.readJSON('config.dist.json'),
+    settings: settings,
     'couch-compile': {
       facade: {
         files: {
@@ -16,32 +14,32 @@ module.exports = function(grunt) {
       },
       'service-display': {
         files: {
-          '.tmp/service-display.json': 'service-display/couchapp'
+          '.tmp/services/display.json': 'services/display/couchapp'
         }
       },
       'service-document': {
         files: {
-          '.tmp/service-document.json': 'service-document/couchapp'
+          '.tmp/services/document.json': 'services/document/couchapp'
         }
       },
       'service-notification': {
         files: {
-          '.tmp/service-notification.json': 'service-notification/couchapp'
+          '.tmp/services/notification.json': 'services/notification/couchapp'
         }
       },
       'service-redirection': {
         files: {
-          '.tmp/service-redirection.json': 'service-redirection/couchapp'
+          '.tmp/services/redirection.json': 'services/redirection/couchapp'
         }
       },
       'service-remote-browser': {
         files: {
-          '.tmp/service-remote-browser.json': 'service-remote-browser/couchapp'
+          '.tmp/services/remote-browser.json': 'services/remote-browser/couchapp'
         }
       },
       'service-types': {
         files: {
-          '.tmp/service-types.json': 'service-types/couchapp'
+          '.tmp/services/types.json': 'services/types/couchapp'
         }
       }
     },
@@ -57,32 +55,32 @@ module.exports = function(grunt) {
       },
       'service-display': {
         files: {
-          '<%= settings.database %>': '.tmp/service-display.json'
+          '<%= settings.database %>': '.tmp/services/display.json'
         }
       },
       'service-document': {
         files: {
-          '<%= settings.database %>': '.tmp/service-document.json'
+          '<%= settings.database %>': '.tmp/services/document.json'
         }
       },
       'service-notification': {
         files: {
-          '<%= settings.database %>': '.tmp/service-notification.json'
+          '<%= settings.database %>': '.tmp/services/notification.json'
         }
       },
       'service-redirection': {
         files: {
-          '<%= settings.database %>': '.tmp/service-redirection.json'
+          '<%= settings.database %>': '.tmp/services/redirection.json'
         }
       },
       'service-remote-browser': {
         files: {
-          '<%= settings.database %>': '.tmp/service-remote-browser.json'
+          '<%= settings.database %>': '.tmp/services/remote-browser.json'
         }
       },
       'service-types': {
         files: {
-          '<%= settings.database %>': '.tmp/service-types.json'
+          '<%= settings.database %>': '.tmp/services/types.json'
         }
       }
     }

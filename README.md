@@ -94,13 +94,13 @@ its own _bower.json_ - in which we declare the dependencies - and _.bowerrc_ to
 specify the directory in which we want to store the dependencies. We then use
 the `prepare:*` npm task to run the `bower install` command in the right place.
 
-For more details, you can see how we manage service-types' dependencies. We
-have defined a [bower.json](./service-types/bower.json) configuration file as
-well as a [.bowerrc](./service-types/.bowerrc) and we also have a npm script
+For more details, you can see how we manage types' dependencies. We
+have defined a [bower.json](./services/types/bower.json) configuration file as
+well as a [.bowerrc](./services/types/.bowerrc) and we also have a npm script
 defined in [package.json](./package.json):
 
 ```json
-  "prepare:service-types": "cd service-types && bower install"
+  "prepare:types": "cd types && bower install"
 ```
 
 ## Usage
