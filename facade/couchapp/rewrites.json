@@ -120,14 +120,6 @@
     }
   },
   {
-    "from":"/beta/changes/docs/:author",
-    "to":"../../_changes?filter=v1/docs",
-    "query":{
-      "key":":author"
-    },
-    "method":"GET"
-  },
-  {
     "from":"/beta/uuid/:producer/:producer_id",
     "to":"../service-document/_view/uuid",
     "query":{
@@ -417,7 +409,7 @@
     "from":"/beta/changes/articles",
     "to":"../../_changes",
     "query":{
-      "filter":"notification/articles"
+      "filter":"service-notification/articles"
     },
     "method":"GET"
   },
@@ -425,7 +417,7 @@
     "from":"/beta/changes/articles/:producer",
     "to":"../../_changes",
     "query":{
-      "filter":"notification/articlesPerProducer",
+      "filter":"service-notification/articlesPerProducer",
       "producer":":producer"
     },
     "method":"GET",
