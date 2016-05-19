@@ -1,0 +1,24 @@
+{
+    "fields": {
+        "title": {
+            "en": "",
+            "fr": ""
+        },
+        "abstract": {
+            "en": "",
+            "fr": ""
+        }
+    },
+    "type": "article",
+    "version": "v1",
+    "producer": "someproducer",
+    "producer_content_id": "123",
+    "canonical_url": {
+        "en": "",
+        "fr": ""
+    },
+    "created": "2015-02-19 20:35:34",
+    "updated": "2015-02-19 20:52:34",
+    "default_language": "en",
+    "languages": ["fr", "en"]
+}
