@@ -1,7 +1,5 @@
 var chakram = require('chakram'),
     expect = chakram.expect,
-    fs = require('fs'),
-    defaults = require('lodash/defaults'),
     config = require('../utils/config');
 
 chakram.setRequestDefaults({
@@ -49,6 +47,15 @@ describe("Articles API", function() {
     });
 
     describe("GET Article", function() {
+        it("should return a specific article", function() {
+            return articlePost.then(function(resp) {
+                var url = config.database + '/_design/facade/_rewrite/beta/docs/types/article/' + resp.body.id;
+                var apiResponse = chakram.get(url);
+
+                return expect(apiResponse).to.have.status(200);
+            });
+        });
+
         it("should return the list of types", function() {
             var apiResponse = chakram.get(config.database + '/_design/facade/_rewrite/beta/types');
 
@@ -90,6 +97,53 @@ describe("Articles API", function() {
                 }
             });
         });
+
+        it("should return the list of articles", function() {
+            var url = config.database + '/_design/facade/_rewrite/beta/docs/types/article';
+            var apiResponse = chakram.get(url);
+
+            return expect(apiResponse).to.have.schema({
+                "type": "array"
+            });
+        });
+
+        it("should get all the change from :producer", function() {
+            var url = config.database + '/_design/facade/_rewrite/beta/changes/articles/someproducer';
+            var apiResponse = chakram.get(url);
+
+            return expect(apiResponse).to.have.schema({
+                "type": "object",
+                "properties": {
+                    "results": {
+                        "type": "array"
+                    },
+                    "last_seq": {
+                        "type": "number"
+                    }
+                }
+            });
+        });
+    });
+
+    describe("PUT Article", function() {
+        it("should partially update the article", function() {
+            return articlePost.then(function(resp) {
+                var url = config.database + '/_design/facade/_rewrite/beta/docs/types/article/' + resp.body.id;
+
+                var data = {
+                    "fields": {
+                        "title": {
+                            "en": "New title",
+                            "fr": "Nouveau titre"
+                        }
+                    }
+                };
+
+                var apiResponse = chakram.put(url, data);
+
+                return expect(apiResponse).to.have.status(200);
+            });
+        });
     });
 
     describe("DELETE Article", function() {
@@ -118,6 +172,18 @@ describe("Articles API", function() {
 
                 return chakram.wait();
             })
+        });
+    });
+});
+
+describe("Schemas API", function() {
+    it("should return the schema for :schema :version", function() {
+        var url = config.database + '/_design/facade/_rewrite/beta/schema/article/v1';
+        var apiResponse = chakram.get(url);
+
+        return apiResponse.then(function(resp) {
+            console.log(resp.body);
+            return expect(resp.body).to.deep.equal(require('../services/types/couchapp/lib/schemas/article').v1);
         });
     });
 });
