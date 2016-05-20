@@ -107,3 +107,15 @@ defined in [package.json](./package.json):
 
 To start, follow the route exposed by the facade. By default, it should be
 [http://localhost:5984/ilayer/_design/facade/_rewrite/beta]()
+
+## Testing
+
+You can write your tests inside the `tests` directory. We use
+[Chakram](https://dareid.github.io/chakram/) and [Mocha](https://mochajs.org/)
+to run the tests.
+
+You can start the tests with the following command:
+
+```bash
+npm test
+```
