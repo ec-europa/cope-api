@@ -15,6 +15,7 @@ describe("Articles API", function() {
 
     before("Initializing a new article for the tests", function() {
         var initialArticleData = require('./data/article.json');
+        initialArticleData.producer = config.username;
         articlePost = chakram.post(config.database, initialArticleData);
         return articlePost;
     });
@@ -79,7 +80,7 @@ describe("Articles API", function() {
 
 
         it("should return the uuid for :producer :producer_content_id", function() {
-            var url = config.database + '/_design/facade/_rewrite/beta/uuid/someproducer/123';
+            var url = config.database + '/_design/facade/_rewrite/beta/uuid/' + config.username + '/123';
             var apiResponse = chakram.get(url);
 
             return expect(apiResponse).to.have.schema({
@@ -108,7 +109,7 @@ describe("Articles API", function() {
         });
 
         it("should get all the change from :producer", function() {
-            var url = config.database + '/_design/facade/_rewrite/beta/changes/articles/someproducer';
+            var url = config.database + '/_design/facade/_rewrite/beta/changes/articles/' + config.username;
             var apiResponse = chakram.get(url);
 
             return expect(apiResponse).to.have.schema({
@@ -129,14 +130,11 @@ describe("Articles API", function() {
         it("should partially update the article", function() {
             return articlePost.then(function(resp) {
                 var url = config.database + '/_design/facade/_rewrite/beta/docs/types/article/' + resp.body.id;
+                var data = require('./data/article.json');
 
-                var data = {
-                    "fields": {
-                        "title": {
-                            "en": "New title",
-                            "fr": "Nouveau titre"
-                        }
-                    }
+                data.fields.title = {
+                    "en": ["New title"],
+                    "fr": ["Nouveau titre"]
                 };
 
                 var apiResponse = chakram.put(url, data);
