@@ -4,8 +4,8 @@ var chakram = require('chakram'),
 
 chakram.setRequestDefaults({
     auth: {
-        user: config.username,
-        pass: config.password,
+        user: config.admin.username,
+        pass: config.admin.password,
     }
 });
 
@@ -14,9 +14,10 @@ describe("Articles API", function() {
     var articlePost;
 
     before("Initializing a new article for the tests", function() {
-        var initialArticleData = require('./data/article.json');
-        initialArticleData.producer = config.username;
-        articlePost = chakram.post(config.database, initialArticleData);
+        var data = require('./data/article.json');
+        data.producer = config.tests.producer;
+        var requestUrl = config.baseUrl + '/beta/docs/types/article';
+        articlePost = chakram.post(requestUrl, data);
         return articlePost;
     });
 
@@ -27,7 +28,8 @@ describe("Articles API", function() {
         });
 
         it("should respond with JSON", function () {
-            return expect(articlePost).to.have.header('content-type', 'application/json');
+            // Returns 'application/json, application/json'  (this is a known bug in CouchDB)
+            return expect(articlePost).to.have.header('content-type', 'application/json, application/json');
         });
 
         it("should return a body with 'ok' set to true", function() {
@@ -35,12 +37,11 @@ describe("Articles API", function() {
         });
 
 
-        it("should specify the id and revision of the new article", function() {
+        it("should specify the id of the new article", function() {
             return expect(articlePost).to.have.schema({
                 "type": "object",
                 "required": [
-                    "id",
-                    "rev"
+                    "id"
                 ]
             });
         });
@@ -50,15 +51,16 @@ describe("Articles API", function() {
     describe("GET Article", function() {
         it("should return a specific article", function() {
             return articlePost.then(function(resp) {
-                var url = config.database + '/_design/facade/_rewrite/beta/docs/types/article/' + resp.body.id;
-                var apiResponse = chakram.get(url);
+                var requestUrl = config.baseUrl + '/beta/docs/types/article/' + resp.body.id;
+                var apiResponse = chakram.get(requestUrl);
 
                 return expect(apiResponse).to.have.status(200);
             });
         });
 
         it("should return the list of types", function() {
-            var apiResponse = chakram.get(config.database + '/_design/facade/_rewrite/beta/types');
+            var requestUrl = config.baseUrl + '/beta/types';
+            var apiResponse = chakram.get(requestUrl);
 
             // The following won't work (this is a CouchDB issue)
             // expect(apiResponse).to.have.header('content-type', 'application/json');
@@ -80,8 +82,8 @@ describe("Articles API", function() {
 
 
         it("should return the uuid for :producer :producer_content_id", function() {
-            var url = config.database + '/_design/facade/_rewrite/beta/uuid/' + config.username + '/123';
-            var apiResponse = chakram.get(url);
+            var requestUrl = config.baseUrl + '/beta/uuid/' + config.tests.producer + '/123';
+            var apiResponse = chakram.get(requestUrl);
 
             return expect(apiResponse).to.have.schema({
                 "type": "object",
@@ -100,8 +102,8 @@ describe("Articles API", function() {
         });
 
         it("should return the list of articles", function() {
-            var url = config.database + '/_design/facade/_rewrite/beta/docs/types/article';
-            var apiResponse = chakram.get(url);
+            var requestUrl = config.baseUrl + '/beta/docs/types/article';
+            var apiResponse = chakram.get(requestUrl);
 
             return expect(apiResponse).to.have.schema({
                 "type": "array"
@@ -109,8 +111,8 @@ describe("Articles API", function() {
         });
 
         it("should get all the change from :producer", function() {
-            var url = config.database + '/_design/facade/_rewrite/beta/changes/articles/' + config.username;
-            var apiResponse = chakram.get(url);
+            var requestUrl = config.baseUrl + '/beta/changes/articles/' + config.tests.producer;
+            var apiResponse = chakram.get(requestUrl);
 
             return expect(apiResponse).to.have.schema({
                 "type": "object",
@@ -129,7 +131,7 @@ describe("Articles API", function() {
     describe("PUT Article", function() {
         it("should partially update the article", function() {
             return articlePost.then(function(resp) {
-                var url = config.database + '/_design/facade/_rewrite/beta/docs/types/article/' + resp.body.id;
+                var requestUrl = config.baseUrl + '/beta/docs/types/article/' + resp.body.id;
                 var data = require('./data/article.json');
 
                 data.fields.title = {
@@ -137,7 +139,7 @@ describe("Articles API", function() {
                     "fr": ["Nouveau titre"]
                 };
 
-                var apiResponse = chakram.put(url, data);
+                var apiResponse = chakram.put(requestUrl, data);
 
                 return expect(apiResponse).to.have.status(200);
             });
@@ -147,8 +149,8 @@ describe("Articles API", function() {
     describe("DELETE Article", function() {
         it("should delete the article with the given id", function() {
             return articlePost.then(function(resp) {
-                var url = config.database + '/_design/facade/_rewrite/beta/docs/types/article/' + resp.body.id;
-                var apiResponse = chakram.delete(url);
+                var requestUrl = config.baseUrl + '/beta/docs/types/article/' + resp.body.id;
+                var apiResponse = chakram.delete(requestUrl);
 
                 expect(apiResponse).to.have.status(200);
                 expect(apiResponse).to.have.schema({
@@ -170,18 +172,6 @@ describe("Articles API", function() {
 
                 return chakram.wait();
             })
-        });
-    });
-});
-
-describe("Schemas API", function() {
-    it("should return the schema for :schema :version", function() {
-        var url = config.database + '/_design/facade/_rewrite/beta/schema/article/v1';
-        var apiResponse = chakram.get(url);
-
-        return apiResponse.then(function(resp) {
-            console.log(resp.body);
-            return expect(resp.body).to.deep.equal(require('../services/types/couchapp/lib/schemas/article').v1);
         });
     });
 });
