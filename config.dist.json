@@ -1,5 +1,11 @@
 {
   "database": "http://localhost:5984/ilayer",
-  "username": "",
-  "password": ""
+  "baseUrl": "http://localhost:5984/ilayer/_design/facade/_rewrite",
+  "admin": {
+    "username": "",
+    "password": ""
+  },
+  "tests": {
+    "producer": "someproducer"
+  }
 }
