@@ -453,7 +453,11 @@
     "to":"../../../_session",
     "documentation":{
       "title":"Get session",
-      "description":"Open a session"
+      "description":"Open a session",
+      "params":{
+        "name":"producer name",
+        "password":"producer password"
+      }
     }
   }
 ]
