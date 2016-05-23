@@ -28,7 +28,15 @@
     "from":"/beta/docs/types/:type",
     "to":"../service-document/_list/listDocuments/docs",
     "query":{
-      "key": ":type",
+      "endkey":[
+        ":producer"
+      ],
+      "startkey":[
+        ":producer",
+        {
+
+        }
+      ],
       "descending":"true"
     },
     "method":"GET",
