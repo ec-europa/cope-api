@@ -45,8 +45,8 @@ module.exports = function(grunt) {
     },
     'couch-push': {
       options: {
-        user: '<%= settings.username %>',
-        pass: '<%= settings.password %>'
+        user: '<%= settings.admin.username %>',
+        pass: '<%= settings.admin.password %>'
       },
       facade: {
         files: {
