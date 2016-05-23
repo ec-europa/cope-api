@@ -29,10 +29,10 @@
     "to":"../service-document/_list/listDocuments/docs",
     "query":{
       "endkey":[
-        ":producer"
+        ":type"
       ],
       "startkey":[
-        ":producer",
+        ":type",
         {
 
         }
