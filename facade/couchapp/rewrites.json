@@ -426,7 +426,7 @@
   },
   {
     "from":"/beta/changes/articles",
-    "to":"../../_changes",
+    "to":"../../../_changes",
     "query":{
       "filter":"notification/articles"
     },
@@ -434,7 +434,7 @@
   },
   {
     "from":"/beta/changes/articles/:producer",
-    "to":"../../_changes",
+    "to":"../../../_changes",
     "query":{
       "filter":"notification/articlesPerProducer",
       "producer":":producer"
@@ -450,6 +450,10 @@
   },
   {
     "from":"/beta/login",
-    "to":"../../_session"
+    "to":"../../../_session",
+    "documentation":{
+      "title":"Get session",
+      "description":"Open a session"
+    }
   }
 ]
