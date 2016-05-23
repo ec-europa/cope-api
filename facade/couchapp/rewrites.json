@@ -426,7 +426,7 @@
   },
   {
     "from":"/beta/changes/articles",
-    "to":"../../../_changes",
+    "to":"../../_changes",
     "query":{
       "filter":"notification/articles"
     },
@@ -434,7 +434,7 @@
   },
   {
     "from":"/beta/changes/articles/:producer",
-    "to":"../../../_changes",
+    "to":"../../_changes",
     "query":{
       "filter":"notification/articlesPerProducer",
       "producer":":producer"
