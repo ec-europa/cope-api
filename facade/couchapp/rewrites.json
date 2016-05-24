@@ -425,7 +425,7 @@
     "to":"../../_changes",
     "query":{
       "filter":"notification/type",
-      "types":":type",
+      "type":":type",
     },
     "method":"GET"
   },
@@ -434,8 +434,8 @@
     "to":"../../_changes",
     "query":{
       "filter":"notification/typePerProducer",
-      "types":":type",
-      "producers":":producer"
+      "type":":type",
+      "producer":":producer"
     },
     "method":"GET",
     "documentation":{
