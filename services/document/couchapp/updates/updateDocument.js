@@ -17,19 +17,21 @@
 
       return [newdoc, {
         code: 201,
-        json: {
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
           ok: true,
           id: newdoc._id
-        }
+        })
       }];
     }
     // change nothing in database
     return [null, {
       code: 400,
-      json: {
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
         error: 'missed',
         reason: 'no document to update'
-      }
+      })
     }];
   }
 
@@ -40,9 +42,10 @@
 
   return [newdoc, {
     code: 200,
-    json: {
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
       ok: true,
       id: newdoc._id
-    }
+    })
   }];
 });

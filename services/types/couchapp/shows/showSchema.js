@@ -14,9 +14,7 @@
   if (!this.lib.schemas.hasOwnProperty(type)) {
     return {
       code: 404,
-      headers: {
-        'Content-Type': 'application/json'
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         error: 'not_found',
         reason: 'There is no schema for: ' + type
@@ -30,9 +28,7 @@
   if (!schema[version]) {
     return {
       code: 404,
-      headers: {
-        'Content-Type': 'application/json'
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         error: 'not_found',
         reason: 'There is no schema for: ' + type + ':' + version
@@ -44,9 +40,7 @@
   if (schema == null) {
     return {
       code: 404,
-      headers: {
-        'Content-Type': 'application/json'
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         error: 'not_found',
         reason: 'schema doesn\'t exist'
@@ -56,9 +50,7 @@
 
   return {
     code: 200,
-    headers: {
-      'Content-Type': 'application/json'
-    },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(schema)
   };
 });

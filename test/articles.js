@@ -25,7 +25,7 @@ describe('Articles API', function articlesAPI() {
     return articlePost;
   });
 
-  describe('As a producer, I', function producerTests() {
+  describe('POST /beta/docs/types/article (as a producer)', function producerTests() {
     var producerArticle;
     var producerParams = {
       auth: {
@@ -44,64 +44,75 @@ describe('Articles API', function articlesAPI() {
       return producerArticle;
     });
 
-    it('can post an article', function test() {
-      expect(producerArticle).to.have.status(201);
+    it('should return 201 on success', function test() {
+      return expect(producerArticle).to.have.status(201);
+    });
+
+    it('should respond with JSON', function test() {
       // Returns 'application/json, application/json'  (this is a known bug in CouchDB)
-      expect(producerArticle).to.have.header('content-type', 'application/json, application/json');
-      expect(producerArticle).to.have.json('ok', true);
-      expect(producerArticle).to.have.schema({
+      return expect(producerArticle).to.have.header('content-type', 'application/json');
+    });
+
+    it('should respond with "ok": "true"', function test() {
+      return expect(producerArticle).to.have.json('ok', true);
+    });
+
+    it('should have the right schema', function test() {
+      return expect(producerArticle).to.have.schema({
         type: 'object',
         required: ['id']
       });
-
-      return chakram.wait();
     });
 
-    it('can update one of my article', function test() {
-      return producerArticle.then(function checkResponse(resp) {
-        var requestUrl = config.baseUrl + '/beta/docs/types/article/' + resp.body.id;
+    describe('PUT /beta/docs/types/article (as a producer)', function prodPut() {
+      it('can update one of my article', function test() {
+        return producerArticle.then(function checkResponse(resp) {
+          var requestUrl = config.baseUrl + '/beta/docs/types/article/' + resp.body.id;
 
-        // Create a dataset from original data
-        var requestData = testArticleData.mergeDeep({
-          producer: config.tests.producer.username,
-          fields: {
-            title: {
-              en: ['New title'],
-              fr: ['Nouveau titre']
+          // Create a dataset from original data
+          var requestData = testArticleData.mergeDeep({
+            producer: config.tests.producer.username,
+            fields: {
+              title: {
+                en: ['New title'],
+                fr: ['Nouveau titre']
+              }
             }
-          }
-        }).toJS();
+          }).toJS();
 
-        var apiResponse = chakram.put(requestUrl, requestData, producerParams);
+          var apiResponse = chakram.put(requestUrl, requestData, producerParams);
 
-        return expect(apiResponse).to.have.status(200);
+          return expect(apiResponse).to.have.status(200);
+        });
       });
     });
 
-    it('can delete my article with the given id', function test() {
-      return producerArticle.then(function checkResponse(resp) {
-        var requestUrl = config.baseUrl + '/beta/docs/types/article/' + resp.body.id;
-        var apiResponse = chakram.delete(requestUrl, null, producerParams);
+    describe('DELETE /beta/docs/types/article (as a producer)', function prodDelete() {
+      it('can delete my article with the given id', function test() {
+        return producerArticle.then(function checkResponse(resp) {
+          var requestUrl = config.baseUrl + '/beta/docs/types/article/' + resp.body.id;
+          var apiResponse = chakram.delete(requestUrl, null, producerParams);
 
-        expect(apiResponse).to.have.status(200);
-        expect(apiResponse).to.have.schema({
-          type: 'object',
-          properties: {
-            ok: {
-              type: 'boolean'
+          expect(apiResponse).to.have.status(200);
+          expect(apiResponse).to.have.schema({
+            type: 'object',
+            properties: {
+              ok: {
+                type: 'boolean'
+              },
+              id: {
+                type: 'string',
+                pattern: '^[0-9A-Za-z-_]*$'
+              }
             },
-            id: {
-              type: 'string',
-              pattern: '^[0-9A-Za-z-_]*$'
-            }
-          },
-          required: [
-            'ok',
-            'id'
-          ]
-        });
+            required: [
+              'ok',
+              'id'
+            ]
+          });
 
-        return chakram.wait();
+          return chakram.wait();
+        });
       });
     });
   });

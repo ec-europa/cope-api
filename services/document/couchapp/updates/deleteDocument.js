@@ -8,10 +8,11 @@
   if (!doc) {
     return [null, {
       code: 400,
-      json: {
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
         error: 'missed',
         reason: 'no document to delete'
-      }
+      })
     }];
   }
 
@@ -20,9 +21,10 @@
 
   return [doc, {
     code: 200,
-    json: {
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
       ok: true,
       id: doc._id
-    }
+    })
   }];
 });
