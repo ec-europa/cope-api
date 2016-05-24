@@ -2,10 +2,13 @@
   "database": "http://localhost:5984/ilayer",
   "baseUrl": "http://localhost:5984/ilayer/_design/facade/_rewrite",
   "admin": {
-    "username": "",
-    "password": ""
+    "username": "admin",
+    "password": "pass"
   },
   "tests": {
-    "producer": "someproducer"
+    "producer": {
+      "username": "producer",
+      "password": "password"
+    }
   }
 }
