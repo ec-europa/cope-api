@@ -1,0 +1,13 @@
+---
+  rules:
+    no-unused-expressions: off
+    global-require: off
+    no-underscore-dangle: off
+    no-param-reassign: off
+  globals:
+    start: true
+    toJSON: true
+    getRow: true
+    emit: true
+    provides: true
+    registerType: true
