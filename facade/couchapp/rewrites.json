@@ -138,14 +138,6 @@
     }
   },
   {
-    "from":"/beta/changes/docs/:author",
-    "to":"../../_changes?filter=v1/docs",
-    "query":{
-      "key":":author"
-    },
-    "method":"GET"
-  },
-  {
     "from":"/beta/uuid/:producer/:producer_id",
     "to":"../service-document/_view/uuid",
     "query":{
@@ -211,8 +203,8 @@
     },
     "method":"GET",
     "documentation":{
-      "title":"Get articles from producer",
-      "description":"Fetch the list of articles created by :producer",
+      "title":"Get :type from producer",
+      "description":"Fetch the list of :type created by :producer",
       "headers":{
         "content-type":"application/json"
       },
@@ -429,28 +421,26 @@
     "method":"GET"
   },
   {
-    "from":"/beta/articles/:doc/:attachment",
-    "to":"../../:doc/:attachment"
-  },
-  {
-    "from":"/beta/changes/articles",
+    "from":"/beta/changes/types/:type",
     "to":"../../_changes",
     "query":{
-      "filter":"notification/articles"
+      "filter":"notification/type",
+      "types":":type",
     },
     "method":"GET"
   },
   {
-    "from":"/beta/changes/articles/:producer",
+    "from":"/beta/changes/types/:type/producers/:producer",
     "to":"../../_changes",
     "query":{
-      "filter":"notification/articlesPerProducer",
-      "producer":":producer"
+      "filter":"notification/typePerProducer",
+      "types":":type",
+      "producers":":producer"
     },
     "method":"GET",
     "documentation":{
-      "title":"Articles changes ",
-      "description":"Change feed for articles from a given :producer",
+      "title":":type changes ",
+      "description":"Change feed for :type from a given :producer",
       "params":{
         ":producer (optional)":"producer name"
       }
