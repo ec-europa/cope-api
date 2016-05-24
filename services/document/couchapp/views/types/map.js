@@ -3,9 +3,11 @@
  *
  * @type {{map: Function, reduce: string}}
  */
-function(doc) {
-    if (doc.producer && doc.type && !doc.deleted_by_producer) {
-        var key = [doc.type];
-        emit(key, 1);
-    }
-}
+(function map(doc) {
+  var key;
+
+  if (doc.producer && doc.type && !doc.deleted_by_producer) {
+    key = [doc.type];
+    emit(key, 1);
+  }
+});

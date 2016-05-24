@@ -5,17 +5,21 @@
  *
  * @type {{map: Function}}
  */
-function(doc) {
-    if (doc.producer && doc.producer_content_id && !doc.deleted_by_producer && doc.fields.original_url && doc.fields.origin) {
+(function maps(doc) {
+  var originalUrls;
+  var origins;
 
-        var original_urls = doc.fields.original_url;
-        var origins = doc.fields.origin;
+  if (doc.producer && doc.producer_content_id && !doc.deleted_by_producer
+    && doc.fields.original_url && doc.fields.origin) {
+    originalUrls = doc.fields.original_url;
+    origins = doc.fields.origin;
 
-        // for each original url, emit the original url as key and corresponding origin (new url) as value
-        Object.keys(original_urls).map(function(curr) {
-            var key = original_urls[curr][0];
-            var value = origins[curr][0];
-            emit(key, value);
-        });
-    }
-}
+    // for each original url, emit the original url as key
+    // and corresponding origin (new url) as value
+    Object.keys(originalUrls).forEach(function mapOriginalNew(curr) {
+      var key = originalUrls[curr][0];
+      var value = origins[curr][0];
+      emit(key, value);
+    });
+  }
+});

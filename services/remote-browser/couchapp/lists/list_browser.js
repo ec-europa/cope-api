@@ -4,19 +4,25 @@
  * @param req
  * @returns {*}
  */
-function(head, req) {
+(function list(head, req) {
+  provides('json', function providesJSON() {
+    var row;
+    var rows = [];
+    var item;
 
-    provides('json', function() {
-        var row, rows = [];
-        while (row = getRow()) {
-            var item = {};
-            item[row.key] = row.value;
-            rows.push(item);
-        }
-        if (req.client) {
-            JSON.stringify(rows);
-        }
-        return toJSON(rows[0]);
-    })
+    row = getRow();
 
-}
+    while (row) {
+      item = {};
+      item[row.key] = row.value;
+      rows.push(item);
+      row = getRow();
+    }
+
+    if (req.client) {
+      JSON.stringify(rows);
+    }
+
+    return toJSON(rows[0]);
+  });
+});

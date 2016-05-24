@@ -5,46 +5,44 @@
  * @param req
  * @returns {*}
  */
-function(doc, req) {
+(function update(doc, req) {
+  var newdoc = JSON.parse(req.body);
 
-    var newdoc = JSON.parse(req.body);
+  if (!doc) {
+    // create new document
+    if ('id' in req) {
+      newdoc._id = req.uuid; // append _id field
+      newdoc.producer = req.userCtx.name; // append producer field
+      // TODO inject dates
 
-    if (!doc) {
-        // create new document
-        if ('id' in req) {
-            newdoc._id = req.uuid; // append _id field
-            newdoc.producer = req.userCtx.name; // append producer field
-            //TODO inject dates
-
-            return [newdoc, {
-                'code': 201,
-                'json': {
-                    "ok": true,
-                    "id": newdoc._id
-                }
-            }];
+      return [newdoc, {
+        code: 201,
+        json: {
+          ok: true,
+          id: newdoc._id
         }
-        // change nothing in database
-        return [null, {
-            'code': 400,
-            'json': {
-                'error': 'missed',
-                'reason': 'no document to update'
-            }
-        }]
-    } else {
-        // update existing document
-        newdoc._id = doc._id; // append the existing _id to the new document
-        newdoc._rev = doc._rev; // append the existing _rev to the new document
-        newdoc.producer = req.userCtx.name;
-
-        return [newdoc, {
-            'code': 200,
-            'json': {
-                "ok": true,
-                "id": newdoc._id
-            }
-        }];
+      }];
     }
+    // change nothing in database
+    return [null, {
+      code: 400,
+      json: {
+        error: 'missed',
+        reason: 'no document to update'
+      }
+    }];
+  }
 
-}
+  // update existing document
+  newdoc._id = doc._id; // append the existing _id to the new document
+  newdoc._rev = doc._rev; // append the existing _rev to the new document
+  newdoc.producer = req.userCtx.name;
+
+  return [newdoc, {
+    code: 200,
+    json: {
+      ok: true,
+      id: newdoc._id
+    }
+  }];
+});

@@ -5,11 +5,10 @@
  * @param req
  * @returns {boolean}
  */
-function(doc, req) {
+(function filter(doc, req) {
+  if (doc.type === 'article' && doc.producer === req.query.producer) {
+    return true;
+  }
 
-    if (doc.type === "article" && doc.producer == req.query.producer) {
-        return true;
-    }
-
-    return false;
-}
+  return false;
+});

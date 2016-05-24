@@ -2,14 +2,12 @@
  * Change feed for article
  *
  * @param doc
- * @param req
  * @returns {boolean}
  */
-function(doc, req) {
+(function filter(doc) {
+  if (doc.type === 'article') {
+    return true;
+  }
 
-    if (doc.type === "article") {
-        return true;
-    }
-
-    return false;
-}
+  return false;
+});

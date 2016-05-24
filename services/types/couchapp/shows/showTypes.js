@@ -5,28 +5,34 @@
  * @param req
  * @returns {*}
  */
-function(doc, req) {
+(function show() {
+  var schemas = [];
+  var schemaLib = this.lib.schemas;
+  var newType;
+  var currType;
 
-    var schemas = [];
-    var schemaLib = this.lib.schemas;
+  // "for type in schemaLib"
+  Object.keys(schemaLib).forEach(function forIn(type) {
+    newType = require('lib/schemas/' + type);
+    currType = {};
+    currType[newType.v1.id] = newType.v1.version;
+    schemas.push(currType);
+  });
 
-    for (var type in schemaLib) {
-        var newType = require('lib/schemas/' + type);
-        var currType = {};
-        currType[newType['v1'].id] = newType['v1'].version;
-        schemas.push(currType);
-    }
-
-    if (schemas == null) {
-        return {
-            'json': {
-                code: 404,
-                error: "not_found",
-                reason: "schema doesn't exist"
-            }
-        };
-    }
+  if (schemas == null) {
     return {
-        'json': schemas
+      code: 404,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        error: 'not_found',
+        reason: 'schema doesn\'t exist'
+      })
     };
-}
+  }
+
+  return {
+    code: 200,
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(schemas)
+  };
+});

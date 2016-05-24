@@ -6,10 +6,15 @@
  *
  * @type {{map: Function}}
  */
-function(doc) {
-    if (doc.producer && doc.producer_content_id && !doc.deleted_by_producer) {
-        var key = [doc.producer, doc.producer_content_id]; //sort by post date desc and return title, thumbnail, nbr of comments, author, avatar, authid, post id
-        var value = doc._id;
-        emit(key, value);
-    }
-}
+(function map(doc) {
+  var key;
+  var value;
+
+  if (doc.producer && doc.producer_content_id && !doc.deleted_by_producer) {
+    // sort by post date desc and return title, thumbnail, nbr of comments,
+    // author, avatar, authid, post id
+    key = [doc.producer, doc.producer_content_id];
+    value = doc._id;
+    emit(key, value);
+  }
+});

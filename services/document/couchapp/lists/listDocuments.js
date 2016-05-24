@@ -4,23 +4,27 @@
  * @param req
  * @returns {*}
  */
-function(head, req) {
-    start({
-        code: 200,
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    });
+(function list(head, req) {
+  var row;
+  var rows = [];
 
-    var row, rows = [];
-
-    while (row = getRow()) {
-        rows.push(row.value);
+  start({
+    code: 200,
+    headers: {
+      'Content-Type': 'application/json'
     }
+  });
 
-    if (req.client) {
-        console.log(JSON.stringify(rows));
-    }
+  row = getRow();
 
-    return toJSON(rows);
-}
+  while (row) {
+    rows.push(row.value);
+    row = getRow();
+  }
+
+  if (req.client) {
+    console.log(JSON.stringify(rows));
+  }
+
+  return toJSON(rows);
+});
