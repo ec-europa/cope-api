@@ -4,6 +4,11 @@
     global-require: off
     no-underscore-dangle: off
     no-param-reassign: off
+    no-restricted-syntax:
+      - error
+      - DebuggerStatement
+      - LabeledStatement
+      - WithStatement
   globals:
     start: true
     toJSON: true

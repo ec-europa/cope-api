@@ -10,14 +10,17 @@
   var schemaLib = this.lib.schemas;
   var newType;
   var currType;
+  var type;
 
   // "for type in schemaLib"
-  Object.keys(schemaLib).forEach(function forIn(type) {
-    newType = require('lib/schemas/' + type);
-    currType = {};
-    currType[newType.v1.id] = newType.v1.version;
-    schemas.push(currType);
-  });
+  for (type in schemaLib) {
+    if ({}.hasOwnProperty.call(schemaLib, type)) {
+      newType = require('lib/schemas/' + type);
+      currType = {};
+      currType[newType.v1.id] = newType.v1.version;
+      schemas.push(currType);
+    }
+  }
 
   if (schemas == null) {
     return {
