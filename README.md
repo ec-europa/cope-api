@@ -119,3 +119,11 @@ You can start the tests with the following command:
 ```bash
 npm test
 ```
+
+## Lint
+
+The code is linted is ESLint.
+
+```bash
+npm run lint
+```
