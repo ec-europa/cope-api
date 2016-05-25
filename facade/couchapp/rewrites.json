@@ -19,6 +19,7 @@
         "content-type":"application/json"
       },
       "params":{
+        ":type":"The document type",
         "data":"The document to be inserted"
       }
     }
@@ -27,7 +28,15 @@
     "from":"/beta/docs/types/:type",
     "to":"../service-document/_list/listDocuments/docs",
     "query":{
-      "key": ":type",
+      "endkey":[
+        ":type"
+      ],
+      "startkey":[
+        ":type",
+        {
+
+        }
+      ],
       "descending":"true"
     },
     "method":"GET",
@@ -36,6 +45,9 @@
       "description":"Fetch :type document",
       "headers":{
         "content-type":"application/json"
+      },
+      "params":{
+        ":type":"The document type"
       }
     }
   },
@@ -51,6 +63,9 @@
       "description":"Fetch the lastest :type",
       "headers":{
         "content-type":"application/json"
+      },
+      "params":{
+        ":type":"The document type"
       }
     }
   },
@@ -65,6 +80,7 @@
         "content-type":"application/json"
       },
       "params":{
+        ":type":"The document type",
         ":uuid":"The unique id of the doc to be retrieved"
       }
     }
@@ -74,12 +90,13 @@
     "to":"../service-document/_update/updateDocument/:uuid",
     "method":"PUT",
     "documentation":{
-      "title":"Put article",
-      "description":"update an article :uuid",
+      "title":"Put :type",
+      "description":"update an :type :uuid",
       "headers":{
         "content-type":"application/json"
       },
       "params":{
+        ":type":"The document type",
         ":uuid":"the unique id of the content"
       }
     }
@@ -95,6 +112,7 @@
         "content-type":"application/json"
       },
       "params":{
+        ":type":"The document type",
         ":uuid":"the unique id of the content"
       }
     }
@@ -118,14 +136,6 @@
         ":version":"version number"
       }
     }
-  },
-  {
-    "from":"/beta/changes/docs/:author",
-    "to":"../../_changes?filter=v1/docs",
-    "query":{
-      "key":":author"
-    },
-    "method":"GET"
   },
   {
     "from":"/beta/uuid/:producer/:producer_id",
@@ -167,7 +177,7 @@
     "method":"GET",
     "documentation":{
       "title":"Get types",
-      "description":"Fetch the list of content types",
+      "description":"Fetch the list of valid content types",
       "headers":{
         "content-type":"application/json"
       }
@@ -193,12 +203,13 @@
     },
     "method":"GET",
     "documentation":{
-      "title":"Get articles from producer",
-      "description":"Fetch the list of articles created by :producer",
+      "title":"Get :type from producer",
+      "description":"Fetch the list of :type created by :producer",
       "headers":{
         "content-type":"application/json"
       },
       "params":{
+        ":type":"The document type",
         ":producer":"the producer id"
       }
     }
@@ -256,8 +267,8 @@
       "title":"Get teaser",
       "description":"Fetch the teaser for producer and type",
       "params":{
-        ":producer (optional)":"producer id",
-        ":type (optional)":"schema name"
+        ":producer":"producer id",
+        ":type":"schema name"
       }
     }
   },
@@ -298,8 +309,8 @@
       "title":"Get title",
       "description":"Fetch the title for producer and type",
       "params":{
-        ":producer (optional)":"producer id",
-        ":type (optional)":"schema name"
+        ":producer":"producer id",
+        ":type":"schema name"
       }
     }
   },
@@ -410,28 +421,26 @@
     "method":"GET"
   },
   {
-    "from":"/beta/articles/:doc/:attachment",
-    "to":"../../:doc/:attachment"
-  },
-  {
-    "from":"/beta/changes/articles",
+    "from":"/beta/changes/types/:type",
     "to":"../../_changes",
     "query":{
-      "filter":"notification/articles"
+      "filter":"service-notification/type",
+      "type":":type"
     },
     "method":"GET"
   },
   {
-    "from":"/beta/changes/articles/:producer",
+    "from":"/beta/changes/types/:type/producers/:producer",
     "to":"../../_changes",
     "query":{
-      "filter":"notification/articlesPerProducer",
+      "filter":"service-notification/typePerProducer",
+      "type":":type",
       "producer":":producer"
     },
     "method":"GET",
     "documentation":{
-      "title":"Articles changes ",
-      "description":"Change feed for articles from a given :producer",
+      "title":":type changes ",
+      "description":"Change feed for :type from a given :producer",
       "params":{
         ":producer (optional)":"producer name"
       }
@@ -439,6 +448,14 @@
   },
   {
     "from":"/beta/login",
-    "to":"../../_session"
+    "to":"../../../_session",
+    "documentation":{
+      "title":"Get session",
+      "description":"Open a session",
+      "params":{
+        "name":"producer name",
+        "password":"producer password"
+      }
+    }
   }
 ]

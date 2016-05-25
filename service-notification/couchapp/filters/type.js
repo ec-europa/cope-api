@@ -1,5 +1,5 @@
 /**
- * Change feed for article
+ * Change feed for :type
  *
  * @param doc
  * @param req
@@ -7,7 +7,7 @@
  */
 function(doc, req) {
 
-    if (doc.type === "article") {
+    if (doc.type === req.query.type) {
         return true;
     }
 
