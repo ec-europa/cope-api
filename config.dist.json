@@ -1,14 +1,9 @@
 {
+  "host": "http://localhost:5984",
   "database": "http://localhost:5984/ilayer",
   "baseUrl": "http://localhost:5984/ilayer/_design/facade/_rewrite",
   "admin": {
     "username": "admin",
     "password": "pass"
-  },
-  "tests": {
-    "producer": {
-      "username": "producer",
-      "password": "password"
-    }
   }
 }

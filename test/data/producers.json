@@ -1,0 +1,13 @@
+[{
+  "_id": "org.couchdb.user:prd1",
+  "name": "prd1",
+  "type": "user",
+  "roles": [],
+  "password": "plaintext_password"
+}, {
+  "_id": "org.couchdb.user:prd2",
+  "name": "prd2",
+  "type": "user",
+  "roles": [],
+  "password": "plaintext_password"
+}]

@@ -57,7 +57,7 @@ describe('Schemas API', function schemasAPI() {
     });
   });
 
-  describe('GET /beta/schema/unknown/v1', function getUnknownSchema() {
+  describe('GET /beta/schema/unknown/v1 ~ wrong request', function getUnknownSchema() {
     var apiResponse;
     var requestUrl = config.baseUrl + '/beta/schema/unknown/v1';
 
