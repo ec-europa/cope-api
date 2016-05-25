@@ -425,7 +425,7 @@
     "to":"../../_changes",
     "query":{
       "filter":"notification/type",
-      "type":":type",
+      "type":":type"
     },
     "method":"GET"
   },
