@@ -12,7 +12,12 @@ function(head, req) {
         }
     });
 
-    var row, rows = [];
+    var row;
+    var doc = {
+    	total_rows : head.total_rows,
+    	offset : head.offset,
+    	rows : []
+    };
 
     while (row = getRow()) {
         rows.push(row.value);
@@ -22,5 +27,5 @@ function(head, req) {
         console.log(JSON.stringify(rows));
     }
 
-    return toJSON(rows);
+    return toJSON(doc);
 }
