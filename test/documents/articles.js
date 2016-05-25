@@ -156,7 +156,9 @@ describe('Documents API - Articles', function articlesAPI() {
     });
 
     describe('PUT /beta/docs/types/articles ~ as producer 1', function prodPut() {
-      it('can update one of my article', function test() {
+      var apiResponse;
+
+      before(function makeRequest() {
         return producerArticle.then(function checkResponse(resp) {
           var requestUrl = config.baseUrl + '/beta/docs/types/articles/' + resp.body.id;
 
@@ -171,43 +173,59 @@ describe('Documents API - Articles', function articlesAPI() {
             }
           }).toJS();
 
-          var apiResponse = chakram.put(requestUrl, requestData, producerParams);
-
-          return expect(apiResponse).to.have.status(200);
+          apiResponse = chakram.put(requestUrl, requestData, producerParams);
+          return apiResponse;
         });
+      });
+
+      it('should return 201 on success', function test() {
+        return expect(apiResponse).to.have.status(201);
+      });
+
+      it('should respond with JSON', function test() {
+        // Returns 'application/json, application/json'  (this is a known bug in CouchDB)
+        return expect(apiResponse).to.have.header('content-type', 'application/json');
       });
     });
 
     describe('DELETE /beta/docs/types/articles ~ as producer 1', function prodDelete() {
-      it('can delete my article with the given id', function test() {
+      var apiResponse;
+      before(function makeRequest() {
         return producerArticle.then(function checkResponse(resp) {
           var requestUrl = config.baseUrl + '/beta/docs/types/articles/' + resp.body.id;
-          var apiResponse = chakram.delete(requestUrl, null, producerParams);
+          apiResponse = chakram.delete(requestUrl, null, producerParams);
+        });
+      });
 
-          expect(apiResponse).to.have.status(200);
-          expect(apiResponse).to.have.schema({
-            type: 'object',
-            properties: {
-              ok: {
-                type: 'boolean'
-              },
-              id: {
-                type: 'string',
-                pattern: '^[0-9A-Za-z-_]*$'
-              }
+      it('should return 200 on success', function test() {
+        return expect(apiResponse).to.have.status(200);
+      });
+
+      it('should respond with JSON', function test() {
+        // Returns 'application/json, application/json'  (this is a known bug in CouchDB)
+        return expect(apiResponse).to.have.header('content-type', 'application/json');
+      });
+
+      it('should respond with right format', function test() {
+        return expect(apiResponse).to.have.schema({
+          type: 'object',
+          properties: {
+            ok: {
+              type: 'boolean'
             },
-            required: [
-              'ok',
-              'id'
-            ]
-          });
-
-          return chakram.wait();
+            id: {
+              type: 'string',
+              pattern: '^[0-9A-Za-z-_]*$'
+            }
+          },
+          required: [
+            'ok',
+            'id'
+          ]
         });
       });
     });
   });
-
 
   describe('POST /beta/docs/types/article ~ as a consumer', function consumerTests() {
     var consumerArticle;

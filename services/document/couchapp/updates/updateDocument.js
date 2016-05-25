@@ -46,7 +46,7 @@
   newdoc.producer = req.userCtx.name;
 
   return [newdoc, {
-    code: 200,
+    code: 201,
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
       ok: true,
