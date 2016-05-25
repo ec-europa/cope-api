@@ -1,5 +1,5 @@
 /**
- *  Change feed for article from a given producer
+ *  Change feed for :type from a given :producer
  *
  * @param doc
  * @param req
@@ -7,7 +7,7 @@
  */
 function(doc, req) {
 
-    if (doc.type === "article" && doc.producer == req.query.producer) {
+    if (doc.type === req.query.type && doc.producer == req.query.producer) {
         return true;
     }
 
