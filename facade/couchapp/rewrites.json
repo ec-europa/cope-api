@@ -90,8 +90,8 @@
     "to":"../service-document/_update/updateDocument/:uuid",
     "method":"PUT",
     "documentation":{
-      "title":"Put article",
-      "description":"update an article :uuid",
+      "title":"Put :type",
+      "description":"update an :type :uuid",
       "headers":{
         "content-type":"application/json"
       },
