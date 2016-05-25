@@ -10,7 +10,8 @@
   if (doc.producer && !doc.deleted_by_producer) {
     key = [doc.type, doc.producer];
     value = {
-      title: doc.fields.title,
+      id: doc._id,
+      fields: doc.fields,
       created: doc.created
     };
 
