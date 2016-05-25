@@ -6,11 +6,16 @@ var config = require('../utils/config');
 var producers = require('./data/producers.json');
 
 describe('Changes API', function changesAPI() {
-  describe('GET /beta/changes/articles/:producer', function getChangesByProducerUuid() {
+  // Prepare request URI
+  var type = 'articles';
+  var producer = producers[0].name;
+  var uri = '/beta/changes/types/' + type + '/producers/' + producer;
+
+  describe('GET ' + uri, function getChangesByProducerUuid() {
     var apiResponse;
 
     before(function makeRequest() {
-      var requestUrl = config.baseUrl + '/beta/changes/articles/' + producers[0];
+      var requestUrl = config.baseUrl + uri;
       apiResponse = chakram.get(requestUrl);
     });
 

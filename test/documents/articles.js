@@ -6,15 +6,18 @@ var immutable = require('immutable');
 // Load articles examples and make them immutable
 var testArticleData = immutable.fromJS(require('../data/articles.json'));
 
+// Load articles schema
+var articlesSchema = require('../../services/types/couchapp/lib/schemas/articles').v1;
+
 // Load producers
 var producers = require('../data/producers.json');
 
 describe('Documents API - Articles', function articlesAPI() {
-  describe('GET /beta/docs/types/article', function getArticlesList() {
+  describe('GET /beta/docs/types/articles', function getArticlesList() {
     var apiResponse;
 
     before(function makeRequest() {
-      var requestUrl = config.baseUrl + '/beta/docs/types/article';
+      var requestUrl = config.baseUrl + '/beta/docs/types/articles';
       apiResponse = chakram.get(requestUrl);
       return apiResponse;
     });
@@ -27,34 +30,39 @@ describe('Documents API - Articles', function articlesAPI() {
       return expect(apiResponse).to.have.header('content-type', 'application/json');
     });
 
-    it('should return the list of all articles', function test() {
+    it('should return the list of all articles (at least 1)', function test() {
       return expect(apiResponse).to.have.schema({
         type: 'array',
+        minItems: 1,
         items: {
           type: 'object'
         }
       });
     });
 
-    it('should return at least 1 article', function test() {
-      return apiResponse.then(function handleResponse(resp) {
-        if (resp.body.length > 0) {
-          describe('GET /beta/docs/types/article/:uuid', function getArticleByUuid() {
-            var getApiResponse;
-            var uuid = resp.body[0].id;
+    describe('GET /beta/docs/types/articles/:uuid', function getArticleByUuid() {
+      var getApiResponse;
 
-            before(function makeRequest() {
-              var requestUrl = config.baseUrl + '/beta/docs/types/article/' + uuid;
-              getApiResponse = chakram.get(requestUrl);
-            });
+      before(function makeRequest() {
+        return apiResponse.then(function handleResponse(resp) {
+          var uuid = resp.body[0].id;
+          var uri = '/beta/docs/types/articles/' + uuid;
+          var requestUrl = config.baseUrl + uri;
+          getApiResponse = chakram.get(requestUrl);
+          return getApiResponse;
+        });
+      });
 
-            it('should return a specific article', function testArticle() {
-              return expect(getApiResponse).to.have.status(200);
-            });
-          });
-        } else {
-          throw new Error('Couldn\'t find any article in the database');
-        }
+      it('should return 200 on success', function test() {
+        return expect(getApiResponse).to.have.status(200);
+      });
+
+      it('should respond with JSON', function test() {
+        return expect(getApiResponse).to.have.header('content-type', 'application/json');
+      });
+
+      it('should return a well formatted article', function test() {
+        return expect(getApiResponse).to.have.schema(articlesSchema);
       });
     });
   });
@@ -118,7 +126,7 @@ describe('Documents API - Articles', function articlesAPI() {
     };
 
     before(function makeRequest() {
-      var requestUrl = config.baseUrl + '/beta/docs/types/article';
+      var requestUrl = config.baseUrl + '/beta/docs/types/articles';
 
       // Create a dataset from original data and set producer
       var requestData = testArticleData.get(0).toJS();
@@ -147,10 +155,10 @@ describe('Documents API - Articles', function articlesAPI() {
       });
     });
 
-    describe('PUT /beta/docs/types/article ~ as producer 1', function prodPut() {
+    describe('PUT /beta/docs/types/articles ~ as producer 1', function prodPut() {
       it('can update one of my article', function test() {
         return producerArticle.then(function checkResponse(resp) {
-          var requestUrl = config.baseUrl + '/beta/docs/types/article/' + resp.body.id;
+          var requestUrl = config.baseUrl + '/beta/docs/types/articles/' + resp.body.id;
 
           // Create a dataset from original data
           var requestData = testArticleData.get(0).mergeDeep({
@@ -170,10 +178,10 @@ describe('Documents API - Articles', function articlesAPI() {
       });
     });
 
-    describe('DELETE /beta/docs/types/article ~ as producer 1', function prodDelete() {
+    describe('DELETE /beta/docs/types/articles ~ as producer 1', function prodDelete() {
       it('can delete my article with the given id', function test() {
         return producerArticle.then(function checkResponse(resp) {
-          var requestUrl = config.baseUrl + '/beta/docs/types/article/' + resp.body.id;
+          var requestUrl = config.baseUrl + '/beta/docs/types/articles/' + resp.body.id;
           var apiResponse = chakram.delete(requestUrl, null, producerParams);
 
           expect(apiResponse).to.have.status(200);
@@ -200,24 +208,31 @@ describe('Documents API - Articles', function articlesAPI() {
     });
   });
 
-  describe('As a consumer, I', function consumerTests() {
-    var consumerResponse;
 
-    before('Preparing the POST request', function test() {
+  describe('POST /beta/docs/types/article ~ as a consumer', function consumerTests() {
+    var consumerArticle;
+
+    before(function makeRequest() {
+      var requestUrl = config.baseUrl + '/beta/docs/types/articles';
+
       // Create a dataset from original data and set producer
       var requestData = testArticleData.get(0).toJS();
-      var requestUrl = config.baseUrl + '/beta/docs/types/article';
-      consumerResponse = chakram.post(requestUrl, requestData);
-      return consumerResponse;
+
+      consumerArticle = chakram.post(requestUrl, requestData);
+      return consumerArticle;
     });
 
-    it('can\'t post an article', function test() {
-      expect(consumerResponse).to.have.status(401);
-      // Returns 'application/json, application/json'  (this is a known bug in CouchDB)
-      expect(consumerResponse).to.have.header('content-type', 'application/json');
-      expect(consumerResponse).to.have.json('error', 'unauthorized');
+    it('should return 401 with error', function test() {
+      return expect(consumerArticle).to.have.status(401);
+    });
 
-      return chakram.wait();
+    it('should respond with JSON', function test() {
+      // Returns 'application/json, application/json'  (this is a known bug in CouchDB)
+      return expect(consumerArticle).to.have.header('content-type', 'application/json');
+    });
+
+    it('should respond with "error": "unauthorized"', function test() {
+      expect(consumerArticle).to.have.json('error', 'unauthorized');
     });
   });
 });
