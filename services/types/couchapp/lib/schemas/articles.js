@@ -1,5 +1,5 @@
 exports.v1 = {
-  "id": "article",
+  "id": "articles",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "version": "1.0",
   "type": "object",

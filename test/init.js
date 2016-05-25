@@ -33,7 +33,7 @@ describe('Prepare tests', function init() {
   });
 
   it('should create test articles', function createArticles() {
-    var requestUrl = config.baseUrl + '/beta/docs/types/article';
+    var requestUrl = config.baseUrl + '/beta/docs/types/articles';
     var multipleResponses = [];
 
     articles.forEach(function postProducer(article) {

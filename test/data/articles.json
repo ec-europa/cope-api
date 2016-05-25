@@ -9,7 +9,7 @@
       "fr": ["French abstract"]
     }
   },
-  "type": "article",
+  "type": "articles",
   "version": "v1",
   "producer": "prd1",
   "producer_content_id": "123",
@@ -32,7 +32,7 @@
       "fr": ["French abstract"]
     }
   },
-  "type": "article",
+  "type": "articles",
   "version": "v1",
   "producer": "prd2",
   "producer_content_id": "123",

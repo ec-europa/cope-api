@@ -1,12 +1,12 @@
 /**
- *  Change feed for article from a given producer
+ * Change feed for :type
  *
  * @param doc
  * @param req
  * @returns {boolean}
  */
 (function filter(doc, req) {
-  if (doc.type === 'article' && doc.producer === req.query.producer) {
+  if (doc.type === req.query.type) {
     return true;
   }
 
