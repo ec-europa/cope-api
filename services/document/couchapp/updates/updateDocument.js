@@ -12,7 +12,12 @@
     // create new document
     if ('id' in req) {
       newdoc._id = req.uuid; // append _id field
-      newdoc.producer = req.userCtx.name; // append producer field
+
+      // append producer field if user is not authentified as admin
+      if (req.userCtx.roles.indexOf('_admin') === -1) {
+        newdoc.producer = req.userCtx.name;
+      }
+
       // TODO inject dates
 
       return [newdoc, {
