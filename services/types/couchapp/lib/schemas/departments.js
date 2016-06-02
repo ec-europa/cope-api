@@ -74,8 +74,7 @@ exports.v1 = {
         "department_type",
         "directorate_type",
         "main_task",
-        "abbreviation",
-        "canonical_url"
+        "abbreviation"
       ]
     }
   }
