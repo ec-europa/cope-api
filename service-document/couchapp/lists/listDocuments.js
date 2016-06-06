@@ -23,9 +23,5 @@ function(head, req) {
         rows.push(row.value);
     }
 
-    if (req.client) {
-        console.log(JSON.stringify(rows));
-    }
-
     return toJSON(doc);
 }
