@@ -32,7 +32,7 @@
                     },
                     "additionalProperties": false
                 },
-                "long_title|description|news_type|introduction|body|location|background_information|publish_date|update_date": {
+                "long_title|description|news_type|introduction|body|location|background_information": {
                     "type": "object",
                     "patternProperties": {
                         "^([a-z]{2}|und)$": {
@@ -40,6 +40,10 @@
                         }
                     },
                     "additionalProperties": false
+                },
+                "publish_date|update_date": {
+					          "type": "string",
+                    "format":"date-time"
                 },
                 "department|person": {
                     "type": "array",
