@@ -1,4 +1,4 @@
-{
+exports.v1 = {
     "id": "news",
     "$schema": "http://json-schema.org/draft-04/schema#",
     "version": "1.0",
