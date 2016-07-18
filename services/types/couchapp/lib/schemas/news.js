@@ -14,7 +14,7 @@ exports.v1 = {
                             "type": "array",
                             "items": {
                                 "type": "string",
-                                "pattern": "(http|https):\\\/\\\/(\\w+:{0,1}\\w*@)?(\\S+)(:[0-9]+)?(\\\/|\\\/([\\w#!:.?+=&%@!\\-\\\/]))?"
+                                "pattern": "\\\/\\\/(\\w+:{0,1}\\w*@)?(\\S+)(:[0-9]+)?(\\\/|\\\/([\\w#!:.?+=&%@!\\-\\\/]))?"
                             }
                         }
                     }
@@ -42,15 +42,30 @@ exports.v1 = {
                     "additionalProperties": false
                 },
                 "publish_date|update_date": {
-					          "type": "string",
-                    "format":"date-time"
+                    "type": "object",
+                    "patternProperties": {
+                        "^([a-z]{2}|und)$": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "format": "date-time"
+                            }
+                        }
+                    },
+                    "additionalProperties": false
                 },
                 "department|person": {
-                    "type": "array",
-                    "items": {
-                        "type": "string",
-                        "pattern": "[0-9A-Za-z-?! ]{32}$"
-                    }
+                    "type": "object",
+                    "patternProperties": {
+                        "^([a-z]{2}|und)$": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "pattern": "[0-9A-Za-z-?! ]{32}$"
+                            }
+                        }
+                    },
+                    "additionalProperties": false
                 }
             },
             "required": [
