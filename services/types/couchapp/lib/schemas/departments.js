@@ -62,7 +62,7 @@ exports.v1 = {
               "type": "array",
               "items": {
                 "type": "string",
-                "enum": ["n/a", "Policy-making and implementation", "Managing programmes", "Publications", "archives", "statistics", "Support to the public", "Support to EU institutions"]
+                "enum": ["n/a", "Policy-making and implementation", "Managing programmes", "Publications, archives, statistics", "Support to the public", "Support to EU institutions"]
               }
             }
           },
