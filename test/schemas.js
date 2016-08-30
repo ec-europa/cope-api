@@ -4,11 +4,16 @@ var config = require('../utils/config');
 
 // Load schemas for comparison
 var articlesSchema = require('../services/types/couchapp/lib/schemas/articles').v1;
+var newsSchema = require('../services/types/couchapp/lib/schemas/news').v1;
 var departmentsSchema = require('../services/types/couchapp/lib/schemas/departments').v1;
 
 var types = {
   articles: {
     schema: articlesSchema,
+    version: 'v1'
+  },
+  news: {
+    schema: newsSchema,
     version: 'v1'
   },
   departments: {

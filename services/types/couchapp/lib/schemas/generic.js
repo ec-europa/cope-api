@@ -3,19 +3,25 @@ exports.v1 = {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "version": "1.0",
   "type": "object",
+  "description": "this schema provide the overall document structure",
+  "definitions": {
+    "alphanumeric": {
+      "type": "string",
+      "pattern": "^[0-9A-Za-z-_]*$"
+    },
+    "url":{
+      "type": "string",
+      "pattern": "(http|https):\\/\\/(\\w+:{0,1}\\w*@)?(\\S+)(:[0-9]+)?(\\/|\\/([\\w#!:.?+=&%@!\\-\\/]))?"
+    },
+    "date_key": {
+      "type": "string",
+      "pattern": "^([0-9]{2,4})-([0-1][0-9])-([0-3][0-9])(?:( [0-2][0-9]):([0-5][0-9]):([0-5][0-9]))$"
+    }
+  },
   "properties": {
-    "_id": {
-      "type": "string",
-      "pattern": "^[0-9A-Za-z-_]*$"
-    },
-    "type": {
-      "type": "string",
-      "pattern": "^[0-9A-Za-z-_]*$"
-    },
-    "version": {
-      "type": "string",
-      "pattern": "^[0-9A-Za-z-_]*$"
-    },
+    "_id": { "$ref": "#/definitions/alphanumeric" },
+    "type": { "$ref": "#/definitions/alphanumeric" },
+    "version":{ "$ref": "#/definitions/alphanumeric" },
     "producer": {
       "type": "string"
     },
@@ -25,21 +31,12 @@ exports.v1 = {
     "canonical_url": {
       "type": "object",
       "patternProperties": {
-        "^([a-z]{2}|und)$": {
-          "type": "string",
-          "pattern": "(http|https):\\/\\/(\\w+:{0,1}\\w*@)?(\\S+)(:[0-9]+)?(\\/|\\/([\\w#!:.?+=&%@!\\-\\/]))?"
-        }
+        "^([a-z]{2}|und)$": { "$ref": "#/definitions/url" }
       },
       "additionalProperties": false
     },
-    "created": {
-      "type": "string",
-      "pattern": "^([0-9]{2,4})-([0-1][0-9])-([0-3][0-9])(?:( [0-2][0-9]):([0-5][0-9]):([0-5][0-9]))$"
-    },
-    "updated": {
-      "type": "string",
-      "pattern": "^([0-9]{2,4})-([0-1][0-9])-([0-3][0-9])(?:( [0-2][0-9]):([0-5][0-9]):([0-5][0-9]))$"
-    },
+    "created": { "$ref": "#/definitions/date_key" },
+    "updated": { "$ref": "#/definitions/date_key" },
     "default_language": {
       "type": "string",
       "pattern": "^([a-z]{2}|und)$"
