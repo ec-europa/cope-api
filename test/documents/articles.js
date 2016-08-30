@@ -32,10 +32,15 @@ describe('Documents API - Articles', function articlesAPI() {
 
     it('should return the list of all articles (at least 1)', function test() {
       return expect(apiResponse).to.have.schema({
-        type: 'array',
-        minItems: 1,
-        items: {
-          type: 'object'
+        type: 'object',
+        properties: {
+          rows :{
+            type: 'array',
+            minItems: 1,
+            items: {
+              type: 'object'
+            }
+          }
         }
       });
     });
@@ -45,7 +50,7 @@ describe('Documents API - Articles', function articlesAPI() {
 
       before(function makeRequest() {
         return apiResponse.then(function handleResponse(resp) {
-          var uuid = resp.body[0].id;
+          var uuid = resp.body.rows[0].id;
           var uri = '/beta/docs/types/articles/' + uuid;
           var requestUrl = config.baseUrl + uri;
           getApiResponse = chakram.get(requestUrl);
