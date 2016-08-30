@@ -12,12 +12,12 @@ var types = {
     schema: articlesSchema,
     version: 'v1'
   },
-  news: {
-    schema: newsSchema,
-    version: 'v1'
-  },
   departments: {
     schema: departmentsSchema,
+    version: 'v1'
+  },
+  news: {
+    schema: newsSchema,
     version: 'v1'
   }
 };
