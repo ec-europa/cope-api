@@ -2,20 +2,20 @@ exports.v1 = {
     "id": "news",
     "$schema": "http://json-schema.org/draft-04/schema#",
     "version": "1.0",
-    "description": "news document structure",
+    "description": "News document structure",
     "definitions": {
       "field_url": {
-          "type": "object",
-          "patternProperties": {
-              "^([a-z]{2}|und)$": {
-                  "type": "array",
-                  "items": {
-                      "type": "string",
-                      "pattern": "\\\/\\\/(\\w+:{0,1}\\w*@)?(\\S+)(:[0-9]+)?(\\\/|\\\/([\\w#!:.?+=&%@!\\-\\\/]))?"
-                  }
-              }
-          },
-          "additionalProperties": false
+        "type": "object",
+        "patternProperties": {
+          "^([a-z]{2}|und)$": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "\\/\\/(\\w+:{0,1}\\w*@)?(\\S+)(:[0-9]+)?(\\/|\\/([\\w#!:.?+=&%@!\\-\\/]))?"
+            }
+          }
+        },
+        "additionalProperties": false
       },
       "field_date": {
           "type": "object",
@@ -74,17 +74,17 @@ exports.v1 = {
                 "featured_image": { "$ref": "#/definitions/field_url" },
                 "featured_media": { "$ref": "#/definitions/field_url" },
                 "sources": { "$ref": "#/definitions/field_url" },
-                "long_title": { "$ref" : "#/definitions/field_open"},
-                "description": { "$ref" : "#/definitions/field_open"},
-                "news_type": { "$ref" : "#/definitions/field_open"},
-                "introduction": { "$ref" : "#/definitions/field_open"},
-                "body": { "$ref" : "#/definitions/field_open"},
-                "location": { "$ref" : "#/definitions/field_open"},
-                "background_information": { "$ref" : "#/definitions/field_open"},
+                "long_title": { "$ref" : "#/definitions/field_open" },
+                "description": { "$ref" : "#/definitions/field_open" },
+                "news_type": { "$ref" : "#/definitions/field_open" },
+                "introduction": { "$ref" : "#/definitions/field_open" },
+                "body": { "$ref" : "#/definitions/field_open" },
+                "location": { "$ref" : "#/definitions/field_open" },
+                "background_information": { "$ref" : "#/definitions/field_open" },
                 "publish_date": { "$ref": "#/definitions/field_date" },
                 "update_date": { "$ref": "#/definitions/field_date" },
-                "department": { "$ref": "#/definitions/field_reference"},
-                "person": { "$ref": "#/definitions/field_reference"}
+                "department": { "$ref": "#/definitions/field_reference" },
+                "person": { "$ref": "#/definitions/field_reference" }
             },
             "required": [
                 "title",
