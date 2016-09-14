@@ -58,7 +58,7 @@ describe('Documents API - ' + type, function typeAPI() {
       return expect(apiResponse).to.have.schema({
         type: 'object',
         properties: {
-          rows :{
+          rows : {
             type: 'array',
             minItems: 1,
             items: {
