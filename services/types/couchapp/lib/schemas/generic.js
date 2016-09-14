@@ -21,7 +21,7 @@ exports.v1 = {
   "properties": {
     "_id": { "$ref": "#/definitions/alphanumeric" },
     "type": { "$ref": "#/definitions/alphanumeric" },
-    "version":{ "$ref": "#/definitions/alphanumeric" },
+    "version": { "$ref": "#/definitions/alphanumeric" },
     "producer": {
       "type": "string"
     },
