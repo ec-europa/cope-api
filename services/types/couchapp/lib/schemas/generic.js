@@ -3,13 +3,13 @@ exports.v1 = {
   "$schema": "http://json-schema.org/draft-04/schema#",
   "version": "1.0",
   "type": "object",
-  "description": "this schema provide the overall document structure",
+  "description": "Generic document structure",
   "definitions": {
     "alphanumeric": {
       "type": "string",
       "pattern": "^[0-9A-Za-z-_]*$"
     },
-    "url":{
+    "url": {
       "type": "string",
       "pattern": "(http|https):\\/\\/(\\w+:{0,1}\\w*@)?(\\S+)(:[0-9]+)?(\\/|\\/([\\w#!:.?+=&%@!\\-\\/]))?"
     },
