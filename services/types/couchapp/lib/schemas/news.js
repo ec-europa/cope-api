@@ -37,7 +37,7 @@ exports.v1 = {
                   "type": "array",
                   "items": {
                       "type": "string",
-                      "pattern": "[0-9A-Za-z-?! ]{32}$"
+                      "pattern": "[0-9A-Za-z-?!]{32}$"
                   }
               }
           },
