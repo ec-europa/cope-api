@@ -1,141 +1,140 @@
-body{
-    font-family: 'Arial';
+body {
+  font-family: 'Arial';
 }
 
 table {
-    border-spacing: 0;
-    width:97%;
-    border-collapse: collapse;
-    border-spacing: 0;
-    margin-left: 6px;
+  border-spacing: 0;
+  width: 97%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin-left: 6px;
 }
 
 tr {
-    display: table-row;
-    vertical-align: inherit;
-    border-color: inherit;
+  display: table-row;
+  vertical-align: inherit;
+  border-color: inherit;
 }
 
 th {
-    background-color: #f5f5f5;
-    text-align: left;
-    font-family: "Source Sans Pro", sans-serif;
-    font-weight: 700;
-    padding: 16px;
-    border: #e0e0e0 1px solid;
+  background-color: #f5f5f5;
+  text-align: left;
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 700;
+  padding: 16px;
+  border: #e0e0e0 1px solid;
 }
 
-th:first-child{
-    width: 30%;
+th:first-child {
+  width: 30%;
 }
 
 td {
-    vertical-align: top;
-    padding: 12px 16px;
-    border: #e0e0e0 1px solid;
+  vertical-align: top;
+  padding: 12px 16px;
+  border: #e0e0e0 1px solid;
 }
 
-.bubble{
-    background-color: #333;
-    border-radius: 4px;
-    padding : 10px;
-    color: #fff;
-    display: block;
-    font-family: monospace;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: normal;
-    margin : 6px;
+.bubble {
+  background-color: #333;
+  border-radius: 4px;
+  padding: 10px;
+  color: #fff;
+  display: block;
+  font-family: monospace;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: normal;
+  margin: 6px;
 }
 
-code{
-    padding-top: 16px;
-    padding-bottom: 16px;
+code {
+  padding-top: 16px;
+  padding-bottom: 16px;
 }
 
-.bubble-verb{
-    text-transform: uppercase;
-    display: inline-block;
+.bubble-verb {
+  text-transform: uppercase;
+  display: inline-block;
 }
 
-.bubble-verb-post{
-    background-color: #4070ec;
+.bubble-verb-post {
+  background-color: #4070ec;
 }
 
-.bubble-verb-get{
-    background-color: #090;
+.bubble-verb-get {
+  background-color: #090;
 }
 
-.bubble-verb-put{
-    background-color: #e5c500;
+.bubble-verb-put {
+  background-color: #e5c500;
 }
 
-.bubble-verb-delete{
-    background-color: #a00;
+.bubble-verb-delete {
+  background-color: #a00;
 }
 
-
-fieldset{
-    border-radius: 6px;
-    border-style: hidden;
-    margin-bottom: 40px;
+fieldset {
+  border-radius: 6px;
+  border-style: hidden;
+  margin-bottom: 40px;
 }
 
-legend{
-    text-transform: uppercase;
-    font-family: 'Arial';
-    font-size: 34px;
-    font-weight: 600;
-    padding-left:6px;
-    padding-right:6px;
+legend {
+  text-transform: uppercase;
+  font-family: 'Arial';
+  font-size: 34px;
+  font-weight: 600;
+  padding-left: 6px;
+  padding-right: 6px;
 }
 
-fieldset p,fieldset h3{
-    padding-left:6px;
-    padding-right:6px;
+fieldset p,
+fieldset h3 {
+  padding-left: 6px;
+  padding-right: 6px;
 }
 
 #content {
-    padding-top: 16px;
-    z-Index: -1;
-    margin-left: 270px;
-    max-width : 720px;
+  padding-top: 16px;
+  z-Index: -1;
+  margin-left: 270px;
+  max-width: 720px;
 }
 
 .sidenav {
-    width: 228px;
-    margin: 0;
-    padding: 20px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    overflow-x: hidden;
-    overflow-y: auto;
-    background-color: #f5f5f5;
+  width: 228px;
+  margin: 0;
+  padding: 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-color: #f5f5f5;
 }
 
 .sidenav ul {
-    padding-left: 0px;
+  padding-left: 0px;
 }
 
 .sidenav li {
-    display: block;
-    vertical-align: bottom;
-    font-size: 1.0rem;
+  display: block;
+  vertical-align: bottom;
+  font-size: 1.0rem;
 }
 
 .sidenav a {
-    display: block;
-    text-decoration: none;
-    padding: 0.5rem;
-    color: #111122;
-    font-weight: 500;
-    transition: .3s;
-    text-transform: capitalize;
+  display: block;
+  text-decoration: none;
+  padding: 0.5rem;
+  color: #111122;
+  font-weight: 500;
+  transition: .3s;
+  text-transform: capitalize;
 }
 
 .sidenav a:hover {
-    background-color: rgba(255, 255, 255, 1.0);
+  background-color: rgba(255, 255, 255, 1.0);
 }
-
