@@ -10,7 +10,7 @@ function schemaValidation(newDoc, schema) {
     verbose.params = validator.error.params;
     verbose.code = validator.error.code;
 
-    throw new Error({
+    throw ({
       forbidden: {
         code: 400,
         error: 'invalid document',
@@ -20,7 +20,7 @@ function schemaValidation(newDoc, schema) {
   }
 
   if (schema == null) {
-    throw new Error({
+    throw ({
       forbidden: {
         code: 404,
         error: 'not_found',
@@ -46,7 +46,7 @@ function schemaValidation(newDoc, schema) {
 
   // is the user authenticated ?
   if (!userCtx.name) {
-    throw new Error({
+    throw ({
       unauthorized: 'only authenticated users can post'
     });
   }
@@ -58,14 +58,14 @@ function schemaValidation(newDoc, schema) {
 
   // is user owner of both revision of this document? (UPDATE)
   if (oldDoc && oldDoc.producer !== newDoc.producer) {
-    throw new Error({
+    throw ({
       unauthorized: 'You may only update your documents ' + userCtx.name
     });
   }
 
   // is user author of this document? (CREATE)
   if (newDoc.producer !== userCtx.name && userCtx.name !== 'admin') {
-    throw new Error({
+    throw ({
       unauthorized: 'You may only create documents under your name ' + userCtx.name
     });
   }
@@ -76,21 +76,21 @@ function schemaValidation(newDoc, schema) {
 
   // newDoc needs to declare a schema to do validation
   if (!newDoc.type) {
-    throw new Error({
+    throw ({
       forbidden: 'The document schema is missing.'
     });
   }
 
   // newDoc needs to declare a version to do validation
   if (!newDoc.version) {
-    throw new Error({
+    throw ({
       forbidden: 'The document schema version is missing.'
     });
   }
 
   // newDoc.schema needs to exists
   if (!{}.hasOwnProperty.call(this.lib.schemas, type)) {
-    throw new Error({
+    throw ({
       forbidden: 'There is no schema for: ' + type
     });
   }
@@ -99,7 +99,7 @@ function schemaValidation(newDoc, schema) {
 
   // newDoc.schema needs to exists in the right version
   if (!schema[version]) {
-    throw new Error({
+    throw ({
       forbidden: 'There is no schema for: ' + type + ':' + version
     });
   }

@@ -1,6 +1,7 @@
 ---
   rules:
     no-unused-expressions: off
+    no-throw-literal: off
     global-require: off
     no-underscore-dangle: off
     no-param-reassign: off
