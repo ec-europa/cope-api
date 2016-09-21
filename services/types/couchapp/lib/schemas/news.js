@@ -46,7 +46,7 @@ exports.v1 = {
                   "type": "array",
                   "items": {
                       "type": "string",
-                      "pattern": "\\\/\\\/(\\w+:{0,1}\\w*@)?(\\S+)(:[0-9]+)?(\\\/|\\\/([\\w#!:.?+=&%@!\\-\\\/]))?"
+                      "pattern": "\\/\\/(\\w+:{0,1}\\w*@)?(\\S+)(:[0-9]+)?(\\/|\\/([\\w#!:.?+=&%@!\\-\\/]))?"
                   }
               }
           },
@@ -58,17 +58,17 @@ exports.v1 = {
         "fields": {
             "type": "object",
             "properties": {
-                "av_document": { "$ref": "#/definitions/field_open" },
-                "background_information": { "$ref" : "#/definitions/field_open"},
-                "body": { "$ref" : "#/definitions/field_open"},
-                "contact": { "$ref": "#/definitions/field_open"},
-                "department": { "$ref": "#/definitions/field_reference"},
-                "description": { "$ref" : "#/definitions/field_open"},
-                "event_date": { "$ref": "#/definitions/field_date" },
-                "featured_image": { "$ref": "#/definitions/field_url" },
-                "featured_media": { "$ref": "#/definitions/field_url" },
-                "location": { "$ref" : "#/definitions/field_open"},
-                "long_title": { "$ref" : "#/definitions/field_open"},
+                "av_document": { "$ref": "news#/definitions/field_open" },
+                "background_information": { "$ref" : "news#/definitions/field_open"},
+                "body": { "$ref" : "news#/definitions/field_open"},
+                "contact": { "$ref": "news#/definitions/field_open"},
+                "department": { "$ref": "news#/definitions/field_reference"},
+                "description": { "$ref" : "news#/definitions/field_open"},
+                "event_date": { "$ref": "news#/definitions/field_date" },
+                "featured_image": { "$ref": "news#/definitions/field_url" },
+                "featured_media": { "$ref": "news#/definitions/field_url" },
+                "location": { "$ref" : "news#/definitions/field_open"},
+                "long_title": { "$ref" : "news#/definitions/field_open"},
                 "news_type": {
                   "type": "object",
                   "patternProperties": {
@@ -82,11 +82,11 @@ exports.v1 = {
                   },
                   "additionalProperties": false
                 },
-                "introduction": { "$ref" : "#/definitions/field_open"},
-                "pdf": { "$ref": "#/definitions/field_open" },
-                "person": { "$ref": "#/definitions/field_reference"},
-                "publish_date": { "$ref": "#/definitions/field_date" },
-                "sources": { "$ref": "#/definitions/field_url" },
+                "introduction": { "$ref" : "news#/definitions/field_open"},
+                "pdf": { "$ref": "news#/definitions/field_open" },
+                "person": { "$ref": "news#/definitions/field_reference"},
+                "publish_date": { "$ref": "news#/definitions/field_date" },
+                "sources": { "$ref": "news#/definitions/field_url" },
                 "title": {
                     "type": "object",
                     "patternProperties": {
@@ -100,7 +100,7 @@ exports.v1 = {
                     },
                     "additionalProperties": false
                 },
-                "update_date": { "$ref": "#/definitions/field_date" }
+                "update_date": { "$ref": "news#/definitions/field_date" }
             },
             "required": [
                 "body",

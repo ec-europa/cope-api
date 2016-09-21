@@ -32,9 +32,9 @@ exports.v1 = {
           },
           "additionalProperties": false
         },
-        "description": { "$ref": "#/definitions/field_open" },
-        "introduction": { "$ref": "#/definitions/field_open" },
-        "abbreviation": { "$ref": "#/definitions/field_open" },
+        "description": { "$ref": "departments#/definitions/field_open" },
+        "introduction": { "$ref": "departments#/definitions/field_open" },
+        "abbreviation": { "$ref": "departments#/definitions/field_open" },
         "department_type": {
           "type": "object",
           "patternProperties": {

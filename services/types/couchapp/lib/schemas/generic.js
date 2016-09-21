@@ -19,9 +19,9 @@ exports.v1 = {
     }
   },
   "properties": {
-    "_id": { "$ref": "#/definitions/alphanumeric" },
-    "type": { "$ref": "#/definitions/alphanumeric" },
-    "version":{ "$ref": "#/definitions/alphanumeric" },
+    "_id": { "$ref": "generic#/definitions/alphanumeric" },
+    "type": { "$ref": "generic#/definitions/alphanumeric" },
+    "version":{ "$ref": "generic#/definitions/alphanumeric" },
     "producer": {
       "type": "string"
     },
@@ -31,12 +31,12 @@ exports.v1 = {
     "canonical_url": {
       "type": "object",
       "patternProperties": {
-        "^([a-z]{2}|und)$": { "$ref": "#/definitions/url" }
+        "^([a-z]{2}|und)$": { "$ref": "generic#/definitions/url" }
       },
       "additionalProperties": false
     },
-    "created": { "$ref": "#/definitions/date_key" },
-    "updated": { "$ref": "#/definitions/date_key" },
+    "created": { "$ref": "generic#/definitions/date_key" },
+    "updated": { "$ref": "generic#/definitions/date_key" },
     "default_language": {
       "type": "string",
       "pattern": "^([a-z]{2}|und)$"
