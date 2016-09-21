@@ -4,19 +4,6 @@ exports.v1 = {
     "version": "1.0",
     "description": "news document structure",
     "definitions": {
-      "field_url": {
-          "type": "object",
-          "patternProperties": {
-              "^([a-z]{2}|und)$": {
-                  "type": "array",
-                  "items": {
-                      "type": "string",
-                      "pattern": "\\\/\\\/(\\w+:{0,1}\\w*@)?(\\S+)(:[0-9]+)?(\\\/|\\\/([\\w#!:.?+=&%@!\\-\\\/]))?"
-                  }
-              }
-          },
-          "additionalProperties": false
-      },
       "field_date": {
           "type": "object",
           "patternProperties": {
@@ -26,6 +13,15 @@ exports.v1 = {
                       "type": "string",
                       "pattern": "^([0-9]{2,4})-([0-1][0-9])-([0-3][0-9])(?:( [0-2][0-9]):([0-5][0-9]):([0-5][0-9]))$"
                   }
+              }
+          },
+          "additionalProperties": false
+      },
+      "field_open" : {
+          "type": "object",
+          "patternProperties": {
+              "^([a-z]{2}|und)$": {
+                  "type": "array"
               }
           },
           "additionalProperties": false
@@ -43,11 +39,15 @@ exports.v1 = {
           },
           "additionalProperties": false
       },
-      "field_open" : {
+      "field_url": {
           "type": "object",
           "patternProperties": {
               "^([a-z]{2}|und)$": {
-                  "type": "array"
+                  "type": "array",
+                  "items": {
+                      "type": "string",
+                      "pattern": "\\\/\\\/(\\w+:{0,1}\\w*@)?(\\S+)(:[0-9]+)?(\\\/|\\\/([\\w#!:.?+=&%@!\\-\\\/]))?"
+                  }
               }
           },
           "additionalProperties": false
@@ -58,6 +58,35 @@ exports.v1 = {
         "fields": {
             "type": "object",
             "properties": {
+                "av_document": { "$ref": "#/definitions/field_open" },
+                "background_information": { "$ref" : "#/definitions/field_open"},
+                "body": { "$ref" : "#/definitions/field_open"},
+                "contact": { "$ref": "#/definitions/field_open"},
+                "department": { "$ref": "#/definitions/field_reference"},
+                "description": { "$ref" : "#/definitions/field_open"},
+                "event_date": { "$ref": "#/definitions/field_date" },
+                "featured_image": { "$ref": "#/definitions/field_url" },
+                "featured_media": { "$ref": "#/definitions/field_url" },
+                "location": { "$ref" : "#/definitions/field_open"},
+                "long_title": { "$ref" : "#/definitions/field_open"},
+                "news_type": {
+                  "type": "object",
+                  "patternProperties": {
+                    "^([a-z]{2}|und)$": {
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "enum": ["press release", "speech", "news article", "announcement", "blog post", "statement", "factsheet", "infographic", "legal document", "document"]
+                      }
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "introduction": { "$ref" : "#/definitions/field_open"},
+                "pdf": { "$ref": "#/definitions/field_open" },
+                "person": { "$ref": "#/definitions/field_reference"},
+                "publish_date": { "$ref": "#/definitions/field_date" },
+                "sources": { "$ref": "#/definitions/field_url" },
                 "title": {
                     "type": "object",
                     "patternProperties": {
@@ -71,30 +100,17 @@ exports.v1 = {
                     },
                     "additionalProperties": false
                 },
-                "featured_image": { "$ref": "#/definitions/field_url" },
-                "featured_media": { "$ref": "#/definitions/field_url" },
-                "sources": { "$ref": "#/definitions/field_url" },
-                "long_title": { "$ref" : "#/definitions/field_open"},
-                "description": { "$ref" : "#/definitions/field_open"},
-                "news_type": { "$ref" : "#/definitions/field_open"},
-                "introduction": { "$ref" : "#/definitions/field_open"},
-                "body": { "$ref" : "#/definitions/field_open"},
-                "location": { "$ref" : "#/definitions/field_open"},
-                "background_information": { "$ref" : "#/definitions/field_open"},
-                "publish_date": { "$ref": "#/definitions/field_date" },
-                "update_date": { "$ref": "#/definitions/field_date" },
-                "department": { "$ref": "#/definitions/field_reference"},
-                "person": { "$ref": "#/definitions/field_reference"}
+                "update_date": { "$ref": "#/definitions/field_date" }
             },
             "required": [
-                "title",
-                "long_title",
+                "body",
                 "description",
+                "location",
+                "long_title",
                 "news_type",
                 "publish_date",
-                "update_date",
-                "body",
-                "location"
+                "title",
+                "update_date"
             ]
         }
     }
