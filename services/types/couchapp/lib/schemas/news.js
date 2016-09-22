@@ -76,7 +76,7 @@ exports.v1 = {
                       "type": "array",
                       "items": {
                         "type": "string",
-                        "enum": ["press release", "speech", "news article", "announcement", "blog post", "statement", "factsheet", "infographic", "legal document", "document"]
+                        "enum": ["IP","MEMO","MEX","SPEECH","CLDR","AGENDA","STATEMENT","STAT","OLAF","EPSO","AC","WM"]
                       }
                     }
                   },
