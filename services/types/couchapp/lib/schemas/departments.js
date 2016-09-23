@@ -2,6 +2,18 @@ exports.v1 = {
   "id": "departments",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "version": "1.0",
+  "description": "Departments document structure",
+  "definitions": {
+    "field_open" : {
+        "type": "object",
+        "patternProperties": {
+            "^([a-z]{2}|und)$": {
+                "type": "array"
+            }
+        },
+        "additionalProperties": false
+    }
+  },
   "type": "object",
   "properties": {
     "fields": {
@@ -20,15 +32,9 @@ exports.v1 = {
           },
           "additionalProperties": false
         },
-        "description|introduction|abbreviation": {
-          "type": "object",
-          "patternProperties": {
-            "^([a-z]{2}|und)$": {
-              "type": "array"
-            }
-          },
-          "additionalProperties": false
-        },
+        "description": { "$ref": "departments#/definitions/field_open" },
+        "introduction": { "$ref": "departments#/definitions/field_open" },
+        "abbreviation": { "$ref": "departments#/definitions/field_open" },
         "department_type": {
           "type": "object",
           "patternProperties": {
