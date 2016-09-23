@@ -91,9 +91,9 @@
    "updated": "2016-08-23 11:00:29",
    "version": "v1",
    "canonical_url": {
-       "en": "http://default/departments/informatics_en",
-       "fr": "http://default/departments/informatics_en",
-       "pt": "http://default/departments/informatics_en"
+       "en": "http://www.example.org",
+       "fr": "http://www.example.org",
+       "pt": "http://www.example.org"
    }
 },{
    "default_language": "en",
@@ -188,8 +188,8 @@
    "updated": "2016-08-23 11:00:29",
    "version": "v1",
    "canonical_url": {
-       "en": "http://default/departments/informatics_en",
-       "fr": "http://default/departments/informatics_en",
-       "pt": "http://default/departments/informatics_en"
+       "en": "http://www.example.org",
+       "fr": "http://www.example.org",
+       "pt": "http://www.example.org"
    }
 }]

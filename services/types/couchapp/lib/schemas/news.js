@@ -2,7 +2,7 @@ exports.v1 = {
     "id": "news",
     "$schema": "http://json-schema.org/draft-04/schema#",
     "version": "1.0",
-    "description": "news document structure",
+    "description": "News document structure",
     "definitions": {
       "field_date": {
           "type": "object",
@@ -33,7 +33,7 @@ exports.v1 = {
                   "type": "array",
                   "items": {
                       "type": "string",
-                      "pattern": "[0-9A-Za-z-?! ]{32}$"
+                      "pattern": "[0-9A-Za-z-?!]{32}$"
                   }
               }
           },
