@@ -35,7 +35,7 @@ describe('Changes API', function changesAPI() {
             type: 'array'
           },
           last_seq: {
-            type: 'number'
+            type: 'string'
           }
         }
       });
