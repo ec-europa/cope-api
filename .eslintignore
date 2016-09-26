@@ -1,3 +1,5 @@
 .tmp
 node_modules
 services/types/couchapp/lib/vendor
+services/document/couchapp/views/producers/reduce.js
+services/document/couchapp/views/types/reduce.js

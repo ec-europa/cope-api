@@ -1,3 +1,35 @@
+function schemaValidation(newDoc, schema) {
+  // load the validator
+  var validator = require('lib/vendor/tv4/tv4').tv4;
+
+  var verbose = {};
+
+  // validate newDoc against schema[version]
+  if (!validator.validate(newDoc, schema)) {
+    verbose.message = validator.error.message;
+    verbose.params = validator.error.params;
+    verbose.code = validator.error.code;
+
+    throw ({
+      forbidden: {
+        code: 400,
+        error: 'invalid document',
+        reason: [verbose, newDoc]
+      }
+    });
+  }
+
+  if (schema == null) {
+    throw ({
+      forbidden: {
+        code: 404,
+        error: 'not_found',
+        reason: 'schema doesn\'t exist'
+      }
+    });
+  }
+}
+
 /**
  * Validation function applied to all documents.
  *
@@ -9,38 +41,8 @@
   var type = newDoc.type;
   var version = newDoc.version;
   var schema;
+  var genericSchema = require('lib/schemas/generic');
 
-  // load the validator
-  var validator = require('lib/vendor/tv4/tv4').tv4;
-
-  function schemaValidation(newDoc, schema) {
-    var verbose = {};
-
-    // validate newDoc against schema[version]
-    if (!validator.validate(newDoc, schema)) {
-      verbose.message = validator.error.message;
-      verbose.params = validator.error.params;
-      verbose.code = validator.error.code;
-
-      throw ({
-        forbidden: {
-          code: 400,
-          error: 'invalid document',
-          reason: [verbose, newDoc]
-        }
-      });
-    }
-
-    if (schema == null) {
-      throw ({
-        forbidden: {
-          code: 404,
-          error: 'not_found',
-          reason: 'schema doesn\'t exist'
-        }
-      });
-    }
-  }
 
   // is the user authenticated ?
   if (!userCtx.name) {
@@ -50,7 +52,7 @@
   }
 
   // onDeleted skip required fields check
-  if (newDoc.deleted_by_producer && oldDoc.producer === userCtx.name || userCtx.name === 'admin') {
+  if ((newDoc.deleted_by_producer && oldDoc.producer === userCtx.name) || userCtx.name === 'admin') {
     return;
   }
 
@@ -69,7 +71,6 @@
   }
 
   // validate against generic schema
-  var genericSchema = require('lib/schemas/generic');
   genericSchema = genericSchema.v1;
   schemaValidation(newDoc, genericSchema);
 
@@ -88,7 +89,7 @@
   }
 
   // newDoc.schema needs to exists
-  if (!this.lib.schemas.hasOwnProperty(type)) {
+  if (!{}.hasOwnProperty.call(this.lib.schemas, type)) {
     throw ({
       forbidden: 'There is no schema for: ' + type
     });

@@ -84,5 +84,4 @@ describe('Prepare tests', function init() {
       return expect(returnedStatuses).to.not.include(false);
     });
   });
-  
 });
