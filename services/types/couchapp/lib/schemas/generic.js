@@ -1,48 +1,45 @@
 exports.v1 = {
-  id: 'generic',
-  $schema: 'http://json-schema.org/draft-04/schema#',
-  version: '1.0',
-  type: 'object',
-  properties: {
-    _id: {
-      type: 'string',
-      pattern: '^[0-9A-Za-z-_]*$'
+  "id": "generic",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "version": "1.0",
+  "type": "object",
+  "description": "Generic document structure",
+  "definitions": {
+    "alphanumeric": {
+      "type": "string",
+      "pattern": "^[0-9A-Za-z-_]*$"
     },
-    type: {
-      type: 'string',
-      pattern: '^[0-9A-Za-z-_]*$'
+    "url": {
+      "type": "string",
+      "pattern": "(http|https):\\/\\/(\\w+:{0,1}\\w*@)?(\\S+)(:[0-9]+)?(\\/|\\/([\\w#!:.?+=&%@!\\-\\/]))?"
     },
-    version: {
-      type: 'string',
-      pattern: '^[0-9A-Za-z-_]*$'
-    },
-    producer: {
-      type: 'string'
+    "date_key": {
+      "type": "string",
+      "pattern": "^([0-9]{2,4})-([0-1][0-9])-([0-3][0-9])(?:( [0-2][0-9]):([0-5][0-9]):([0-5][0-9]))$"
+    }
+  },
+  "properties": {
+    "_id": { "$ref": "generic#/definitions/alphanumeric" },
+    "type": { "$ref": "generic#/definitions/alphanumeric" },
+    "version": { "$ref": "generic#/definitions/alphanumeric" },
+    "producer": {
+      "type": "string"
     },
     producer_content_id: {
       type: 'string'
     },
-    canonical_url: {
-      type: 'object',
-      patternProperties: {
-        '^([a-z]{2}|und)$': {
-          type: 'string',
-          pattern: '(http|https):\\/\\/(\\w+:{0,1}\\w*@)?(\\S+)(:[0-9]+)?(\\/|\\/([\\w#!:.?+=&%@!\\-\\/]))?'
-        }
+    "canonical_url": {
+      "type": "object",
+      "patternProperties": {
+        "^([a-z]{2}|und)$": { "$ref": "generic#/definitions/url" }
       },
       additionalProperties: false
     },
-    created: {
-      type: 'string',
-      pattern: '^([0-9]{2,4})-([0-1][0-9])-([0-3][0-9])(?:( [0-2][0-9]):([0-5][0-9]):([0-5][0-9]))$'
-    },
-    updated: {
-      type: 'string',
-      pattern: '^([0-9]{2,4})-([0-1][0-9])-([0-3][0-9])(?:( [0-2][0-9]):([0-5][0-9]):([0-5][0-9]))$'
-    },
-    default_language: {
-      type: 'string',
-      pattern: '^([a-z]{2}|und)$'
+    "created": { "$ref": "generic#/definitions/date_key" },
+    "updated": { "$ref": "generic#/definitions/date_key" },
+    "default_language": {
+      "type": "string",
+      "pattern": "^([a-z]{2}|und)$"
     },
     languages: {
       type: 'array',
