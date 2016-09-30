@@ -1,0 +1,17 @@
+version: '2'
+services:
+  couchdb:
+    build: ./docker/couchdb
+    ports:
+      - "5984:5984"
+    expose:
+      - "5984"
+  cope:
+    build: .
+    environment:
+      NODE_ENV: development
+    volumes:
+      - .:/usr/src/app/
+      - /usr/src/app/node_modules
+    links:
+      - couchdb
