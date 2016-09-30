@@ -10,6 +10,7 @@ services:
     build: .
     environment:
       NODE_ENV: development
+      DOCKER: "true"
     volumes:
       - .:/usr/src/app/
       - /usr/src/app/node_modules
