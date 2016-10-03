@@ -4,9 +4,8 @@
 
 Without Docker:
 
-- Node.js >= v4
-- npm >= v3.3.x
-- CouchDB 12.0
+-   Node.js >= v4
+-   CouchDB 2.0
 
 ## Setup
 
