@@ -38,7 +38,7 @@ exports.v1 = {
         department_type: {
           type: 'object',
           patternProperties: {
-            '^([a-z]{2}|und)$': {
+            und: {
               type: 'array',
               items: {
                 type: 'string',
@@ -51,7 +51,7 @@ exports.v1 = {
         directorate_type: {
           type: 'object',
           patternProperties: {
-            '^([a-z]{2}|und)$': {
+            und: {
               type: 'array',
               items: {
                 type: 'string',
@@ -64,7 +64,7 @@ exports.v1 = {
         main_task: {
           type: 'object',
           patternProperties: {
-            '^([a-z]{2}|und)$': {
+            und: {
               type: 'array',
               items: {
                 type: 'string',

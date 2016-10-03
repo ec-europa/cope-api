@@ -3,16 +3,11 @@ var expect = chakram.expect;
 var config = require('../utils/config');
 
 // Load schemas for comparison
-var articlesSchema = require('../services/types/couchapp/lib/schemas/articles').v1;
 var departmentsSchema = require('../services/types/couchapp/lib/schemas/departments').v1;
 var genericSchema = require('../services/types/couchapp/lib/schemas/generic').v1;
 var newsSchema = require('../services/types/couchapp/lib/schemas/news').v1;
 
 var types = {
-  articles: {
-    schema: articlesSchema,
-    version: 'v1'
-  },
   departments: {
     schema: departmentsSchema,
     version: 'v1'
@@ -33,7 +28,7 @@ describe('Schemas API', function schemasAPI() {
     var version = types[type].version;
     var uri = '/beta/schema/' + type + '/' + version;
 
-    describe('GET ' + uri, function getArticleSchema() {
+    describe('GET ' + uri, function getTypeSchema() {
       var apiResponse;
       var requestUrl = config.baseUrl + uri;
 
