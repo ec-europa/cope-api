@@ -11,7 +11,7 @@
   var schema;
 
   // schema needs to exists
-  if (!this.lib.schemas.hasOwnProperty(type)) {
+  if (!{}.hasOwnProperty.call(this.lib.schemas, type)) {
     return {
       code: 404,
       headers: { 'Content-Type': 'application/json' },

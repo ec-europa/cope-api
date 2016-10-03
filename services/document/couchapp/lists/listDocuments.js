@@ -1,15 +1,14 @@
 /**
  *
  * @param head
- * @param req
  * @returns {*}
  */
-(function list(head, req) {
+(function list(head) {
   var row;
   var doc = {
-    total_rows : head.total_rows,
-    offset : head.offset,
-    rows : []
+    total_rows: head.total_rows,
+    offset: head.offset,
+    rows: []
   };
 
   start({

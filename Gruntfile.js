@@ -1,7 +1,6 @@
-module.exports = function(grunt) {
+var settings = require('./utils/config');
 
-  var settings = require('./utils/config');
-
+module.exports = function gruntConfig(grunt) {
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
