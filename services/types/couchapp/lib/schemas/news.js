@@ -72,7 +72,7 @@ exports.v1 = {
         news_type: {
           type: 'object',
           patternProperties: {
-            '^([a-z]{2}|und)$': {
+            und: {
               type: 'array',
               items: {
                 type: 'string',
