@@ -7,7 +7,7 @@ var producers = require('./data/producers.json');
 
 describe('Changes API', function changesAPI() {
   // Prepare request URI
-  var type = 'articles';
+  var type = 'news';
   var producer = producers[0].name;
   var uri = '/beta/changes/types/' + type + '/producers/' + producer;
 
