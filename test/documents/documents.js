@@ -9,7 +9,6 @@ var testNewsData = require('../data/news.json');
 var testDepartmentsData = require('../data/departments.json');
 
 // Load schemas
-var articlesSchema = require('../../services/types/couchapp/lib/schemas/articles').v1;
 var newsSchema = require('../../services/types/couchapp/lib/schemas/news').v1;
 var departmentsSchema = require('../../services/types/couchapp/lib/schemas/departments').v1;
 
@@ -17,11 +16,6 @@ var departmentsSchema = require('../../services/types/couchapp/lib/schemas/depar
 var producers = require('../data/producers.json');
 
 var types = {
-  articles: {
-    schema: articlesSchema,
-    version: 'v1',
-    data: testArticlesData
-  },
   departments: {
     schema: departmentsSchema,
     version: 'v1',
