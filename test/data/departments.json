@@ -1,195 +1,159 @@
 [{
-   "default_language": "en",
-   "languages": [
-       "en",
-       "fr",
-       "pt"
-   ],
-   "fields": {
-       "title": {
-           "en": [
-               "Informatics"
-           ],
-           "fr": [
-               "Informatique"
-           ],
-           "pt": [
-               "Informática"
-           ]
-       },
-       "department_type": {
-           "en": [
-               "Directorate-General"
-           ],
-           "fr": [
-               "Directorate-General"
-           ],
-           "pt": [
-               "Directorate-General"
-           ]
-       },
-       "directorate_type": {
-           "en": [
-               "operational"
-           ],
-           "fr": [
-               "operational"
-           ],
-           "pt": [
-               "operational"
-           ]
-       },
-       "main_task": {
-           "en": [
-               "Support to EU institutions"
-           ],
-           "fr": [
-               "Support to EU institutions"
-           ],
-           "pt": [
-               "Support to EU institutions"
-           ]
-       },
-       "description": {
-           "en": [
-               "Directorate-General for Informatics"
-           ],
-           "fr": [
-               "Direction Générale de l'Informatique"
-           ],
-           "pt": [
-               "Directorate-General for Informatics"
-           ]
-       },
-       "introduction": {
-           "en": [
-               "<p>DIGIT's mission is to deliver digital services to enable EU policies and to support the Commission's internal administration.</p><p>With this goal in mind, DIGIT as trusted partner has the responsibility to:</p><ul><li>Provide the EC, and whenever appropriate other European Institutions and bodies, with high quality and innovative:<ul><li><strong>Workplace solutions</strong>: creating new ways of working and collaboration for staff;</li><li><strong>Business solutions</strong>: delivering information systems supporting rationalised business processes within the framework of the corporate IT Governance strategy;</li><li><strong>Infrastructure solutions</strong>: providing reliable, cost-effective and secure infrastructure and services;</li><li><strong>Effective solutions</strong>: aligning IT investments with business priorities, facilitating relationships with our strategic partners, balancing risk with business value for the Institution</li></ul></li><li>Support the modernisation of public administrations by promoting and facilitating interoperability so that European public administrations can work seamlessly together across boundaries – <strong>Interoperability solutions</strong></li></ul>"
-           ],
-           "fr": [
-               "<p>Ajouter introduction ici.</p>"
-           ],
-           "pt": [
-               "<p>PT-PT version</p><p>DIGIT's mission is to deliver digital services to enable EU policies and to support the Commission's internal administration.</p><p>With this goal in mind, DIGIT as trusted partner has the responsibility to:</p><ul><li>Provide the EC, and whenever appropriate other European Institutions and bodies, with high quality and innovative:<ul><li><strong>Workplace solutions</strong>: creating new ways of working and collaboration for staff;</li><li><strong>Business solutions</strong>: delivering information systems supporting rationalised business processes within the framework of the corporate IT Governance strategy;</li><li><strong>Infrastructure solutions</strong>: providing reliable, cost-effective and secure infrastructure and services;</li><li><strong>Effective solutions</strong>: aligning IT investments with business priorities, facilitating relationships with our strategic partners, balancing risk with business value for the Institution</li></ul></li><li>Support the modernisation of public administrations by promoting and facilitating interoperability so that European public administrations can work seamlessly together across boundaries – <strong>Interoperability solutions</strong></li></ul>"
-           ]
-       },
-       "abbreviation": {
-           "en": [
-               "DIGIT"
-           ],
-           "fr": [
-               "DIGIT"
-           ],
-           "pt": [
-               "DIGIT"
-           ]
-       }
-   },
-   "type": "departments",
-   "producer": "prd2",
-   "producer_content_id": "node-department-1",
-   "created": "2016-07-20 14:49:37",
-   "updated": "2016-08-23 11:00:29",
-   "version": "v1",
-   "canonical_url": {
-       "en": "http://www.example.org",
-       "fr": "http://www.example.org",
-       "pt": "http://www.example.org"
-   }
-},{
-   "default_language": "en",
-   "languages": [
-       "en",
-       "fr",
-       "pt"
-   ],
-   "fields": {
-       "title": {
-           "en": [
-               "Informatics"
-           ],
-           "fr": [
-               "Informatique"
-           ],
-           "pt": [
-               "Informática"
-           ]
-       },
-       "department_type": {
-           "en": [
-               "Directorate-General"
-           ],
-           "fr": [
-               "Directorate-General"
-           ],
-           "pt": [
-               "Directorate-General"
-           ]
-       },
-       "directorate_type": {
-           "en": [
-               "operational"
-           ],
-           "fr": [
-               "operational"
-           ],
-           "pt": [
-               "operational"
-           ]
-       },
-       "main_task": {
-           "en": [
-               "Support to EU institutions"
-           ],
-           "fr": [
-               "Support to EU institutions"
-           ],
-           "pt": [
-               "Support to EU institutions"
-           ]
-       },
-       "description": {
-           "en": [
-               "Directorate-General for Informatics"
-           ],
-           "fr": [
-               "Direction Générale de l'Informatique"
-           ],
-           "pt": [
-               "Directorate-General for Informatics"
-           ]
-       },
-       "introduction": {
-           "en": [
-               "<p>DIGIT's mission is to deliver digital services to enable EU policies and to support the Commission's internal administration.</p><p>With this goal in mind, DIGIT as trusted partner has the responsibility to:</p><ul><li>Provide the EC, and whenever appropriate other European Institutions and bodies, with high quality and innovative:<ul><li><strong>Workplace solutions</strong>: creating new ways of working and collaboration for staff;</li><li><strong>Business solutions</strong>: delivering information systems supporting rationalised business processes within the framework of the corporate IT Governance strategy;</li><li><strong>Infrastructure solutions</strong>: providing reliable, cost-effective and secure infrastructure and services;</li><li><strong>Effective solutions</strong>: aligning IT investments with business priorities, facilitating relationships with our strategic partners, balancing risk with business value for the Institution</li></ul></li><li>Support the modernisation of public administrations by promoting and facilitating interoperability so that European public administrations can work seamlessly together across boundaries – <strong>Interoperability solutions</strong></li></ul>"
-           ],
-           "fr": [
-               "<p>Ajouter introduction ici.</p>"
-           ],
-           "pt": [
-               "<p>PT-PT version</p><p>DIGIT's mission is to deliver digital services to enable EU policies and to support the Commission's internal administration.</p><p>With this goal in mind, DIGIT as trusted partner has the responsibility to:</p><ul><li>Provide the EC, and whenever appropriate other European Institutions and bodies, with high quality and innovative:<ul><li><strong>Workplace solutions</strong>: creating new ways of working and collaboration for staff;</li><li><strong>Business solutions</strong>: delivering information systems supporting rationalised business processes within the framework of the corporate IT Governance strategy;</li><li><strong>Infrastructure solutions</strong>: providing reliable, cost-effective and secure infrastructure and services;</li><li><strong>Effective solutions</strong>: aligning IT investments with business priorities, facilitating relationships with our strategic partners, balancing risk with business value for the Institution</li></ul></li><li>Support the modernisation of public administrations by promoting and facilitating interoperability so that European public administrations can work seamlessly together across boundaries – <strong>Interoperability solutions</strong></li></ul>"
-           ]
-       },
-       "abbreviation": {
-           "en": [
-               "DIGIT"
-           ],
-           "fr": [
-               "DIGIT"
-           ],
-           "pt": [
-               "DIGIT"
-           ]
-       }
-   },
-   "type": "departments",
-   "producer": "prd2",
-   "producer_content_id": "node-department-2",
-   "created": "2016-07-20 14:49:37",
-   "updated": "2016-08-23 11:00:29",
-   "version": "v1",
-   "canonical_url": {
-       "en": "http://www.example.org",
-       "fr": "http://www.example.org",
-       "pt": "http://www.example.org"
-   }
+  "default_language": "en",
+  "languages": [
+    "en",
+    "fr",
+    "pt"
+  ],
+  "fields": {
+    "title": {
+      "en": [
+        "Informatics"
+      ],
+      "fr": [
+        "Informatique"
+      ],
+      "pt": [
+        "Informática"
+      ]
+    },
+    "department_type": {
+      "und": [
+        "Directorate-General"
+      ]
+    },
+    "directorate_type": {
+      "und": [
+        "operational"
+      ]
+    },
+    "main_task": {
+      "und": [
+        "Support to EU institutions"
+      ]
+    },
+    "description": {
+      "en": [
+        "Directorate-General for Informatics"
+      ],
+      "fr": [
+        "Direction Générale de l'Informatique"
+      ],
+      "pt": [
+        "Directorate-General for Informatics"
+      ]
+    },
+    "introduction": {
+      "en": [
+        "<p>DIGIT's mission is to deliver digital services to enable EU policies and to support the Commission's internal administration.</p><p>With this goal in mind, DIGIT as trusted partner has the responsibility to:</p><ul><li>Provide the EC, and whenever appropriate other European Institutions and bodies, with high quality and innovative:<ul><li><strong>Workplace solutions</strong>: creating new ways of working and collaboration for staff;</li><li><strong>Business solutions</strong>: delivering information systems supporting rationalised business processes within the framework of the corporate IT Governance strategy;</li><li><strong>Infrastructure solutions</strong>: providing reliable, cost-effective and secure infrastructure and services;</li><li><strong>Effective solutions</strong>: aligning IT investments with business priorities, facilitating relationships with our strategic partners, balancing risk with business value for the Institution</li></ul></li><li>Support the modernisation of public administrations by promoting and facilitating interoperability so that European public administrations can work seamlessly together across boundaries – <strong>Interoperability solutions</strong></li></ul>"
+      ],
+      "fr": [
+        "<p>Ajouter introduction ici.</p>"
+      ],
+      "pt": [
+        "<p>PT-PT version</p><p>DIGIT's mission is to deliver digital services to enable EU policies and to support the Commission's internal administration.</p><p>With this goal in mind, DIGIT as trusted partner has the responsibility to:</p><ul><li>Provide the EC, and whenever appropriate other European Institutions and bodies, with high quality and innovative:<ul><li><strong>Workplace solutions</strong>: creating new ways of working and collaboration for staff;</li><li><strong>Business solutions</strong>: delivering information systems supporting rationalised business processes within the framework of the corporate IT Governance strategy;</li><li><strong>Infrastructure solutions</strong>: providing reliable, cost-effective and secure infrastructure and services;</li><li><strong>Effective solutions</strong>: aligning IT investments with business priorities, facilitating relationships with our strategic partners, balancing risk with business value for the Institution</li></ul></li><li>Support the modernisation of public administrations by promoting and facilitating interoperability so that European public administrations can work seamlessly together across boundaries – <strong>Interoperability solutions</strong></li></ul>"
+      ]
+    },
+    "abbreviation": {
+      "en": [
+        "DIGIT"
+      ],
+      "fr": [
+        "DIGIT"
+      ],
+      "pt": [
+        "DIGIT"
+      ]
+    }
+  },
+  "type": "departments",
+  "producer": "prd2",
+  "producer_content_id": "node-department-1",
+  "created": "2016-07-20 14:49:37",
+  "updated": "2016-08-23 11:00:29",
+  "version": "v1",
+  "canonical_url": {
+    "en": "http://www.example.org",
+    "fr": "http://www.example.org",
+    "pt": "http://www.example.org"
+  }
+}, {
+  "default_language": "en",
+  "languages": [
+    "en",
+    "fr",
+    "pt"
+  ],
+  "fields": {
+    "title": {
+      "en": [
+        "Informatics"
+      ],
+      "fr": [
+        "Informatique"
+      ],
+      "pt": [
+        "Informática"
+      ]
+    },
+    "department_type": {
+      "und": [
+        "Directorate-General"
+      ]
+    },
+    "directorate_type": {
+      "und": [
+        "operational"
+      ]
+    },
+    "main_task": {
+      "und": [
+        "Support to EU institutions"
+      ]
+    },
+    "description": {
+      "en": [
+        "Directorate-General for Informatics"
+      ],
+      "fr": [
+        "Direction Générale de l'Informatique"
+      ],
+      "pt": [
+        "Directorate-General for Informatics"
+      ]
+    },
+    "introduction": {
+      "en": [
+        "<p>DIGIT's mission is to deliver digital services to enable EU policies and to support the Commission's internal administration.</p><p>With this goal in mind, DIGIT as trusted partner has the responsibility to:</p><ul><li>Provide the EC, and whenever appropriate other European Institutions and bodies, with high quality and innovative:<ul><li><strong>Workplace solutions</strong>: creating new ways of working and collaboration for staff;</li><li><strong>Business solutions</strong>: delivering information systems supporting rationalised business processes within the framework of the corporate IT Governance strategy;</li><li><strong>Infrastructure solutions</strong>: providing reliable, cost-effective and secure infrastructure and services;</li><li><strong>Effective solutions</strong>: aligning IT investments with business priorities, facilitating relationships with our strategic partners, balancing risk with business value for the Institution</li></ul></li><li>Support the modernisation of public administrations by promoting and facilitating interoperability so that European public administrations can work seamlessly together across boundaries – <strong>Interoperability solutions</strong></li></ul>"
+      ],
+      "fr": [
+        "<p>Ajouter introduction ici.</p>"
+      ],
+      "pt": [
+        "<p>PT-PT version</p><p>DIGIT's mission is to deliver digital services to enable EU policies and to support the Commission's internal administration.</p><p>With this goal in mind, DIGIT as trusted partner has the responsibility to:</p><ul><li>Provide the EC, and whenever appropriate other European Institutions and bodies, with high quality and innovative:<ul><li><strong>Workplace solutions</strong>: creating new ways of working and collaboration for staff;</li><li><strong>Business solutions</strong>: delivering information systems supporting rationalised business processes within the framework of the corporate IT Governance strategy;</li><li><strong>Infrastructure solutions</strong>: providing reliable, cost-effective and secure infrastructure and services;</li><li><strong>Effective solutions</strong>: aligning IT investments with business priorities, facilitating relationships with our strategic partners, balancing risk with business value for the Institution</li></ul></li><li>Support the modernisation of public administrations by promoting and facilitating interoperability so that European public administrations can work seamlessly together across boundaries – <strong>Interoperability solutions</strong></li></ul>"
+      ]
+    },
+    "abbreviation": {
+      "en": [
+        "DIGIT"
+      ],
+      "fr": [
+        "DIGIT"
+      ],
+      "pt": [
+        "DIGIT"
+      ]
+    }
+  },
+  "type": "departments",
+  "producer": "prd2",
+  "producer_content_id": "node-department-2",
+  "created": "2016-07-20 14:49:37",
+  "updated": "2016-08-23 11:00:29",
+  "version": "v1",
+  "canonical_url": {
+    "en": "http://www.example.org",
+    "fr": "http://www.example.org",
+    "pt": "http://www.example.org"
+  }
 }]
