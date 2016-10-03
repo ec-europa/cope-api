@@ -1,11 +1,11 @@
 var chakram = require('chakram');
 var expect = chakram.expect;
 var config = require('../../utils/config');
-var immutable = require('immutable');
+var merge = require('lodash').merge;
 
-// Load sample data and make them immutable
-var testNewsData = immutable.fromJS(require('../data/news.json'));
-var testDepartmentsData = immutable.fromJS(require('../data/departments.json'));
+// Load sample data
+var testNewsData = require('../data/news.json');
+var testDepartmentsData = require('../data/departments.json');
 
 // Load schemas
 var newsSchema = require('../../services/types/couchapp/lib/schemas/news').v1;
@@ -50,6 +50,12 @@ Object.keys(types).forEach(function eachType(type) {
         return expect(apiResponse).to.have.schema({
           type: 'object',
           properties: {
+            total_rows: {
+              type: 'number'
+            },
+            offset: {
+              type: 'number'
+            },
             rows: {
               type: 'array',
               minItems: 1,
@@ -57,7 +63,8 @@ Object.keys(types).forEach(function eachType(type) {
                 type: 'object'
               }
             }
-          }
+          },
+          required: ['total_rows', 'offset', 'rows']
         });
       });
 
@@ -89,13 +96,13 @@ Object.keys(types).forEach(function eachType(type) {
       });
     });
 
-  // Get uuid of documents with key [:producer, :producer_id]
+    // Get uuid of documents with key [:producer, :producer_id]
     describe('GET /beta/uuid/:producer/:producer_id', function get() {
       var apiResponse;
 
-    // Get data from first type for the tests
-      var producer = types[type].data.get(0).get('producer');
-      var producerContentId = types[type].data.get(0).get('producer_content_id');
+      // Get data from first type for the tests
+      var producer = types[type].data[0].producer;
+      var producerContentId = types[type].data[0].producer_content_id;
 
       before(function makeRequest() {
         var requestUrl = config.baseUrl + '/beta/uuid/' + producer + '/' + producerContentId;
@@ -132,7 +139,8 @@ Object.keys(types).forEach(function eachType(type) {
                 },
                 required: ['id', 'key', 'value']
               }
-            }
+            },
+            required: ['total_rows', 'offset', 'rows']
           }
         });
       });
@@ -150,8 +158,8 @@ Object.keys(types).forEach(function eachType(type) {
       before(function makeRequest() {
         var requestUrl = config.baseUrl + '/beta/docs/types/' + type;
 
-      // Create a dataset from original data and set producer
-        var requestData = types[type].data.get(0).toJS();
+        // Create a dataset from original data and set producer
+        var requestData = types[type].data[0];
 
         producerType = chakram.post(requestUrl, requestData, producerParams);
         return producerType;
@@ -162,7 +170,7 @@ Object.keys(types).forEach(function eachType(type) {
       });
 
       it('should respond with JSON', function test() {
-      // Returns 'application/json, application/json'  (this is a known bug in CouchDB)
+        // Returns 'application/json, application/json'  (this is a known bug in CouchDB)
         return expect(producerType).to.have.header('content-type', 'application/json');
       });
 
@@ -171,10 +179,7 @@ Object.keys(types).forEach(function eachType(type) {
       });
 
       it('should have the right schema', function test() {
-        return expect(producerType).to.have.schema({
-          type: 'object',
-          required: ['id']
-        });
+        return expect(producerType).to.have.schema({ type: 'object', required: ['id'] });
       });
 
       describe('PUT /beta/docs/types/' + type + ' ~ as producer 1', function prodPut() {
@@ -184,8 +189,8 @@ Object.keys(types).forEach(function eachType(type) {
           return producerType.then(function checkResponse(resp) {
             var requestUrl = config.baseUrl + '/beta/docs/types/' + type + '/' + resp.body.id;
 
-          // Create a dataset from original data
-            var requestData = types[type].data.get(0).mergeDeep({
+            // Create a dataset from original data
+            var requestData = merge({}, types[type].data[0], {
               producer: producers[0].name,
               fields: {
                 title: {
@@ -193,7 +198,7 @@ Object.keys(types).forEach(function eachType(type) {
                   fr: ['Nouveau titre']
                 }
               }
-            }).toJS();
+            });
 
             apiResponse = chakram.put(requestUrl, requestData, producerParams);
             return apiResponse;
@@ -205,7 +210,7 @@ Object.keys(types).forEach(function eachType(type) {
         });
 
         it('should respond with JSON', function test() {
-        // Returns 'application/json, application/json'  (this is a known bug in CouchDB)
+          // Returns 'application/json, application/json'  (this is a known bug in CouchDB)
           return expect(apiResponse).to.have.header('content-type', 'application/json');
         });
       });
@@ -224,7 +229,7 @@ Object.keys(types).forEach(function eachType(type) {
         });
 
         it('should respond with JSON', function test() {
-        // Returns 'application/json, application/json'  (this is a known bug in CouchDB)
+          // Returns 'application/json, application/json'  (this is a known bug in CouchDB)
           return expect(apiResponse).to.have.header('content-type', 'application/json');
         });
 
@@ -240,10 +245,7 @@ Object.keys(types).forEach(function eachType(type) {
                 pattern: '^[0-9A-Za-z-_]*$'
               }
             },
-            required: [
-              'ok',
-              'id'
-            ]
+            required: ['ok', 'id']
           });
         });
       });
@@ -255,8 +257,8 @@ Object.keys(types).forEach(function eachType(type) {
       before(function makeRequest() {
         var requestUrl = config.baseUrl + '/beta/docs/types/' + type;
 
-      // Create a dataset from original data and set producer
-        var requestData = types[type].data.get(0).toJS();
+        // Create a dataset from original data and set producer
+        var requestData = types[type].data[0];
 
         consumerType = chakram.post(requestUrl, requestData);
         return consumerType;
@@ -267,7 +269,7 @@ Object.keys(types).forEach(function eachType(type) {
       });
 
       it('should respond with JSON', function test() {
-      // Returns 'application/json, application/json'  (this is a known bug in CouchDB)
+        // Returns 'application/json, application/json'  (this is a known bug in CouchDB)
         return expect(consumerType).to.have.header('content-type', 'application/json');
       });
 
