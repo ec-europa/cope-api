@@ -3,8 +3,7 @@ var expect = chakram.expect;
 var config = require('../../utils/config');
 var merge = require('lodash').merge;
 
-// Load sample data and make them immutable
-var testArticlesData = require('../data/articles.json');
+// Load sample data
 var testNewsData = require('../data/news.json');
 var testDepartmentsData = require('../data/departments.json');
 
