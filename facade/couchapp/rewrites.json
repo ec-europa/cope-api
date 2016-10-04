@@ -215,25 +215,6 @@
     }
   },
   {
-    "from":"/beta/redirection",
-    "to":"../service-redirection/_list/list_redirection/redirection_by_url",
-    "query":{
-      "limit":"1",
-      "key":":url"
-    },
-    "method":"GET",
-    "documentation":{
-      "title":"Get redirection url from :url",
-      "description":"return the new url for a given ?url=http://...",
-      "headers":{
-        "content-type":"application/json"
-      },
-      "params":{
-        ":url":"the url"
-      }
-    }
-  },
-  {
     "from":"/beta/browser",
     "to":"../service-remote-browser/_list/list_browser/browse_by_url",
     "query":{

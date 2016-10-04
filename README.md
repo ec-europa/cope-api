@@ -67,13 +67,6 @@ npm run build:service-notification
 npm run push:service-notification
 ```
 
-### Redirection
-
-```bash
-npm run build:service-redirection
-npm run push:service-redirection
-```
-
 ### Remote browser
 
 ```bash
