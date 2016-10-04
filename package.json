@@ -22,7 +22,7 @@
     "build": "npm-run-all --parallel build:*",
     "push": "npm-run-all --parallel push:*",
     "deploy": "npm run prepare && npm run build && npm run push",
-    "test": "mocha test/init.js test/*.js test/documents/*.js",
+    "test": "mocha test/init.js test/*.js test/documents/*.js --timeout 10000",
     "lint": "eslint ."
   },
   "repository": {

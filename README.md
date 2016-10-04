@@ -149,8 +149,8 @@ When you're done, put it down:
 docker-compose down
 ```
 
-To develop, you can access the bash from the main container:
+To develop, you can access the bash from the nodejs container:
 
 ```bash
-docker-compose run --service-ports cope /bin/bash
+docker-compose run --service-ports nodejs /bin/bash
 ```
