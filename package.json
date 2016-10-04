@@ -11,8 +11,6 @@
     "push:service-document": "grunt couch-push:service-document",
     "build:service-notification": "grunt couch-compile:service-notification",
     "push:service-notification": "grunt couch-push:service-notification",
-    "build:service-redirection": "grunt couch-compile:service-redirection",
-    "push:service-redirection": "grunt couch-push:service-redirection",
     "build:service-remote-browser": "grunt couch-compile:service-remote-browser",
     "push:service-remote-browser": "grunt couch-push:service-remote-browser",
     "prepare:service-types": "cd services/types && bower install",
