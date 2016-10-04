@@ -15,13 +15,14 @@
     "push:service-redirection": "grunt couch-push:service-redirection",
     "build:service-remote-browser": "grunt couch-compile:service-remote-browser",
     "push:service-remote-browser": "grunt couch-push:service-remote-browser",
-    "prepare:service-types": "cd services/types && bower install",
+    "prepare:service-types": "cd services/types && bower install --allow-root",
     "build:service-types": "grunt couch-compile:service-types",
     "push:service-types": "grunt couch-push:service-types",
     "prepare": "npm-run-all --parallel prepare:*",
     "build": "npm-run-all --parallel build:*",
     "push": "npm-run-all --parallel push:*",
-    "test": "mocha test/init.js test/*.js test/documents/*.js",
+    "deploy": "npm run prepare && npm run build && npm run push",
+    "test": "mocha test/init.js test/*.js test/documents/*.js --timeout 10000",
     "lint": "eslint ."
   },
   "repository": {

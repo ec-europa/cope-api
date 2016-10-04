@@ -2,9 +2,10 @@
 
 ## Requirements
 
-- Node.js >= v4
-- npm >= v3.3.x
-- CouchDB 2.0
+Without Docker:
+
+-   Node.js >= v4
+-   CouchDB 2.0
 
 ## Setup
 
@@ -120,4 +121,36 @@ The code is linted is ESLint.
 
 ```bash
 npm run lint
+```
+
+## Docker
+
+Build the development environment:
+
+```bash
+docker-compose build
+```
+
+Start it:
+
+```bash
+docker-compose up
+```
+
+Or start it as a daemon:
+
+```bash
+docker-compose up -d
+```
+
+When you're done, put it down:
+
+```bash
+docker-compose down
+```
+
+To develop, you can access the bash from the nodejs container:
+
+```bash
+docker-compose run --service-ports nodejs /bin/bash
 ```
