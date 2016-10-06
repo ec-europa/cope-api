@@ -5,8 +5,6 @@
  * @returns {*}
  */
 (function show(doc) {
-  var newDoc = {};
-
   if (doc == null) {
     return {
       code: 404,
@@ -29,16 +27,21 @@
     };
   }
 
-  newDoc._id = doc._id;
-  newDoc.created = doc.created;
-  newDoc.updated = doc.updated;
-  newDoc.default_language = doc.default_language;
-  newDoc.languages = doc.languages;
-  newDoc.fields = doc.fields;
-
   return {
     code: 200,
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(newDoc)
+    body: JSON.stringify({
+      _id: doc._id,
+      fields: doc.fields,
+      type: doc.type,
+      version: doc.version,
+      producer: doc.producer,
+      producer_content_id: doc.producer_content_id,
+      canonical_url: doc.canonical_url,
+      created: doc.created,
+      updated: doc.updated,
+      default_language: doc.default_language,
+      languages: doc.languages
+    })
   };
 });
