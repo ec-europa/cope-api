@@ -26,6 +26,24 @@ services:
       - couchdb
     networks:
       - cope-network
+  changes:
+    build:
+      context: .
+      dockerfile: ./docker/changes/Dockerfile
+    container_name: cope-changes
+    command: /docker-setup.sh
+    environment:
+      NODE_ENV: development
+      DOCKER: "true"
+    volumes:
+      - .:/usr/src/app/
+      - /usr/src/app/node_modules
+    links:
+      - couchdb
+    depends_on:
+      - nodejs
+    networks:
+      - cope-network
 
 networks:
   cope-network:
