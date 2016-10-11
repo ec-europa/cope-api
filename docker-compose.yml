@@ -1,0 +1,31 @@
+version: '2'
+
+services:
+  couchdb:
+    build: ./docker/couchdb
+    container_name: cope-couchdb
+    networks:
+      - cope-network
+    expose:
+      - "5984"
+    ports:
+      - "5984:5984"
+  nodejs:
+    build:
+      context: .
+      dockerfile: ./docker/nodejs/Dockerfile
+    container_name: cope-nodejs
+    command: /docker-setup.sh
+    environment:
+      NODE_ENV: development
+      DOCKER: "true"
+    volumes:
+      - .:/usr/src/app/
+      - /usr/src/app/node_modules
+    links:
+      - couchdb
+    networks:
+      - cope-network
+
+networks:
+  cope-network:
