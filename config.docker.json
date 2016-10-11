@@ -1,7 +1,7 @@
 {
   "host": "http://couchdb:5984",
-  "database": "http://couchdb:5984/alpha",
-  "baseUrl": "http://couchdb:5984/alpha/_design/facade/_rewrite",
+  "database": "http://couchdb:5984/ilayer",
+  "baseUrl": "http://couchdb:5984/ilayer/_design/facade/_rewrite",
   "admin": {
     "username": "admin",
     "password": "pass"

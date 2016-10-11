@@ -12,19 +12,19 @@ ENV NPM_CONFIG_LOGLEVEL warn
 RUN wget https://github.com/jwilder/dockerize/releases/download/v0.2.0/dockerize-linux-amd64-v0.2.0.tar.gz \
     && tar -C /usr/local/bin -xvzf dockerize-linux-amd64-v0.2.0.tar.gz
 
-# COPY setup script
-COPY ./docker/changes/docker-setup.sh /
-
-# Setup directories and permissions
-RUN chmod +x /docker-setup.sh
-
 # Create app directory
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 # Install app dependencies
-COPY package.json /usr/src/app/
+COPY ./services/changes/package.json /usr/src/app/
 RUN npm install
 
+# COPY setup script
+COPY ./docker/changes/docker-setup.sh /
+
+# Make setup script executable
+RUN chmod +x /docker-setup.sh
+
 # Bundle app source
-COPY . /usr/src/app
+COPY ./services/changes /usr/src/app

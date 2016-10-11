@@ -1,10 +1,13 @@
 var ChangesStream = require('./changes-stream');
-var config = require('../../utils/config');
 var nock = require('nock');
 var request = require('request');
 
+// Read environment variables
+var database = process.env.DATABASE;
+var host = process.env.HOST;
+
 // Connect to CouchDB's changes feed
-var changes = new ChangesStream(config.database);
+var changes = new ChangesStream(host + '/' + database);
 
 // Trigger action on change
 changes.on('readable', function () {
