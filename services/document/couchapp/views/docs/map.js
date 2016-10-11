@@ -12,7 +12,15 @@
     value = {
       id: doc._id,
       fields: doc.fields,
-      created: doc.created
+      type: doc.type,
+      version: doc.version,
+      producer: doc.producer,
+      producer_content_id: doc.producer_content_id,
+      canonical_url: doc.canonical_url,
+      created: doc.created,
+      updated: doc.updated,
+      default_language: doc.default_language,
+      languages: doc.languages
     };
 
     emit(key, value);
