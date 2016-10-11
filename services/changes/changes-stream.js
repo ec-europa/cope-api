@@ -13,19 +13,21 @@ var extend = util._extend;
 
 var DEFAULT_HEARTBEAT = 30 * 1000;
 
-module.exports = ChangesStream;
-
-util.inherits(ChangesStream, Readable);
+function jdup(obj) {
+  return JSON.parse(JSON.stringify(obj));
+}
 
 //
 // @ChangeStream
 // ## Constructor to initialize the changes stream
 //
-function ChangesStream (options) {
-  if (!(this instanceof ChangesStream)) { return new ChangesStream(options) }
+function ChangesStream(options) {
+  var hwm;
+
+  if (!(this instanceof ChangesStream)) { return new ChangesStream(options); }
   options = options || {};
 
-  var hwm = options.highWaterMark || 16;
+  hwm = options.highWaterMark || 16;
   Readable.call(this, { objectMode: true, highWaterMark: hwm });
   //
   // PARSE ALL THE OPTIONS OMG
@@ -48,7 +50,7 @@ function ChangesStream (options) {
 
   if (!this.db) throw new TypeError('you must specify a db');
 
-  if (this.db[this.db.length - 1] != '/') {
+  if (this.db[this.db.length - 1] !== '/') {
     this.db = this.db + '/';
   }
 
@@ -65,16 +67,17 @@ function ChangesStream (options) {
   // Allow couch heartbeat to be used but we can just manage that timeout
   // If passed heartbeat is a number, use the explicitly, if it's a boolean
   // and true, use the default heartbeat, disable it otherwise.
-  if (typeof options.heartbeat === 'number')
+  if (typeof options.heartbeat === 'number') {
     this.heartbeat = options.heartbeat;
-  else if (typeof options.heartbeat === 'boolean')
+  } else if (typeof options.heartbeat === 'boolean') {
     this.heartbeat = options.heartbeat ? DEFAULT_HEARTBEAT : false;
-  else
+  } else {
     this.heartbeat = DEFAULT_HEARTBEAT;
+  }
 
   this.style = options.style || 'main_only';
   this.query_params = options.query_params || {};
-  this.timeout = options.timeout
+  this.timeout = options.timeout;
   this.limit = options.limit;
 
   this.filterIds = Array.isArray(options.filter)
@@ -99,14 +102,14 @@ function ChangesStream (options) {
 //
 // Setup all the _changes query options
 //
-ChangesStream.prototype.preRequest = function () {
+ChangesStream.prototype.preRequest = function handlePreRequest() {
   // We want to actually reform this every time in case something has changed
-  this.query = this._feedParams.reduce(function (acc, key) {
+  this.query = this._feedParams.reduce(function reduce(acc, key) {
     if (typeof this[key] !== 'undefined' && this[key] !== false) {
       acc[key] = this[key];
     }
     return acc;
-  }.bind(this), JDUP(this.query_params));
+  }.bind(this), jdup(this.query_params));
 
   // Remove filter from query parameters since we have confirmed it as
   // a function
@@ -118,11 +121,13 @@ ChangesStream.prototype.preRequest = function () {
 //
 // Make the changes request and start listening on the feed
 //
-ChangesStream.prototype.request = function () {
+ChangesStream.prototype.request = function handleRequest() {
+  var payload;
+  var opts;
+
   // Setup possible query string options
   this.preRequest();
-  // var opts = url.parse(url.resolve(url.resolve(this.db, '_changes'), '?' + qs.stringify(this.query))), payload;
-  var opts = url.parse(url.resolve(url.resolve(this.db, '_design/facade/_rewrite/beta/changes'), '?' + qs.stringify(this.query))), payload;
+  opts = url.parse(url.resolve(this.db, '?' + qs.stringify(this.query)));
 
   //
   // Handle both cases of POST and GET
@@ -131,7 +136,7 @@ ChangesStream.prototype.request = function () {
   opts.timeout = this.requestTimeout;
   opts.rejectUnauthorized = this.rejectUnauthorized;
   opts.headers = {
-    'accept': 'application/json'
+    accept: 'application/json'
   };
   opts.agent = this.agent;
 
@@ -146,7 +151,7 @@ ChangesStream.prototype.request = function () {
   //
   // Set a timer for the initial request with some extra magic number
   //
-  this.timer = setTimeout(this.onTimeout.bind(this), (this.heartbeat || 30 * 1000) + 5000)
+  this.timer = setTimeout(this.onTimeout.bind(this), (this.heartbeat || 30 * 1000) + 5000);
 
   this.req = http.request(opts);
   this.req.setSocketKeepAlive(true);
@@ -156,7 +161,6 @@ ChangesStream.prototype.request = function () {
     this.req.write(payload);
   }
   this.req.end();
-
 };
 
 
@@ -167,11 +171,12 @@ ChangesStream.prototype.request = function () {
 // compatible with how streams3 will work anyway. This just makes the _read
 // function essentially useless as it is on most cases
 //
-ChangesStream.prototype._onResponse = function (res) {
+ChangesStream.prototype._onResponse = function handleOnResponse(res) {
+  var err;
   clearTimeout(this.timer);
   this.timer = null;
   if (res.statusCode !== 200) {
-    var err = new Error('Received a ' + res.statusCode + ' from couch');
+    err = new Error('Received a ' + res.statusCode + ' from couch');
     err.statusCode = res.statusCode;
     return this.emit('error', err);
   }
@@ -182,15 +187,15 @@ ChangesStream.prototype._onResponse = function (res) {
   //
   this.timer = setTimeout(this.onTimeout.bind(this), this.inactivity_ms);
   this.source.on('data', this._readData.bind(this));
-  this.source.on('end', this._onEnd.bind(this));
+  return this.source.on('end', this._onEnd.bind(this));
 };
 
 //
 // Little wrapper around retry for our self set timeouts
 //
-ChangesStream.prototype.onTimeout = function () {
+ChangesStream.prototype.onTimeout = function handleTimeout() {
   clearTimeout(this.timer);
-  this.timer = null
+  this.timer = null;
   debug('request timed out or is inactive, lets retry');
   this.retry();
 };
@@ -198,19 +203,27 @@ ChangesStream.prototype.onTimeout = function () {
 //
 // Parse and read the data that we get from _changes
 //
-ChangesStream.prototype._readData = function (data) {
+ChangesStream.prototype._readData = function handleReadData(data) {
+  var lines;
+  var i;
+  var line;
+
   debug('data event fired from the underlying _changes response');
 
   this._buffer += this._decoder.write(data);
 
-  var lines = this._buffer.split('\n');
+  lines = this._buffer.split('\n');
   this._buffer = lines.pop();
 
-  for (var i=0; i<lines.length; i++) {
-    var line = lines[i];
+  for (i = 0; i < lines.length; i += 1) {
+    line = lines[i];
 
-    try { line = JSON.parse(line) }
-    catch (ex) { return; }
+    try {
+      line = JSON.parse(line);
+    } catch (ex) {
+      return;
+    }
+
     //
     // Process each change
     //
@@ -221,8 +234,10 @@ ChangesStream.prototype._readData = function (data) {
 //
 // Process each change request
 //
-ChangesStream.prototype._onChange = function (change) {
-  var query, doc;
+ChangesStream.prototype._onChange = function handleOnChange(change) {
+  var query;
+  var doc;
+
   if (this.timer) {
     clearTimeout(this.timer);
     this.timer = null;
@@ -244,10 +259,10 @@ ChangesStream.prototype._onChange = function (change) {
   // for running a client side filter function
   //
   if (this.clientFilter) {
-    doc = JDUP(change.doc);
-    query = JDUP({ query: this.query });
+    doc = jdup(change.doc);
+    query = jdup({ query: this.query });
     if (!this.filter(doc, query)) {
-      return;
+      return null;
     }
   }
 
@@ -265,22 +280,26 @@ ChangesStream.prototype._onChange = function (change) {
   // End the stream if we are on teh last change. Start destroying ourselves
   // (`#destroy()` calls `#push(null)`).
   //
-  if (change.last_seq) this.destroy();
+  if (change.last_seq) {
+    this.destroy();
+  }
+
+  return null;
 };
 
 //
 // On error be set for retrying the underlying request
 //
-ChangesStream.prototype._onError = function (err) {
+ChangesStream.prototype._onError = function handleOnError(err) {
   this.attempt = this.attempt || extend({}, this.reconnect);
-  return back(function (fail, opts) {
+  return back(function backoff(fail, opts) {
     if (fail) {
       this.attempt = null;
       return this.emit('error', err);
     }
     debug('retry # %d', opts.attempt);
 
-    this.retry();
+    return this.retry();
   }.bind(this), this.attempt);
 };
 
@@ -288,16 +307,16 @@ ChangesStream.prototype._onError = function (err) {
 // When response ends (for example. CouchDB shuts down gracefully), create an
 // artificial error to let the user know what happened.
 //
-ChangesStream.prototype._onEnd = function () {
+ChangesStream.prototype._onEnd = function handleOnEnd() {
   var err = new Error('CouchDB disconnected gracefully');
-  err.code = 'ECOUCHDBDISCONNECTEDGRACEFULLY'
-  this._onError(err)
+  err.code = 'ECOUCHDBDISCONNECTEDGRACEFULLY';
+  this._onError(err);
 };
 
 //
 // Cleanup and flush any data and retry the request
 //
-ChangesStream.prototype.retry = function () {
+ChangesStream.prototype.retry = function handleRetry() {
   debug('retry request');
   if (this._destroying) return;
   this.emit('retry');
@@ -309,7 +328,7 @@ ChangesStream.prototype.retry = function () {
 // Pause the underlying socket if we want manually handle that backpressure
 // and buffering
 //
-ChangesStream.prototype.pause = function () {
+ChangesStream.prototype.pause = function handlePause() {
   if (!this.paused) {
     debug('paused the source request');
     this.emit('pause');
@@ -322,7 +341,7 @@ ChangesStream.prototype.pause = function () {
 // Resume the underlying socket so we continue to push changes onto the
 // internal buffer
 //
-ChangesStream.prototype.resume = function () {
+ChangesStream.prototype.resume = function handleResume() {
   if (this.paused) {
     debug('resumed the source request');
     this.emit('resume');
@@ -331,13 +350,16 @@ ChangesStream.prototype.resume = function () {
   }
 };
 
-ChangesStream.prototype.preCleanup = function () {
+ChangesStream.prototype.preCleanup = function handlePreCleanup() {
   var rem = this._buffer.trim();
-  debug('precleanup: do we have remaining data?')
+  debug('precleanup: do we have remaining data?');
   if (rem) {
     debug('attempting to parse remaining data');
-    try { rem = JSON.parse(rem) }
-    catch (ex) { return }
+    try {
+      rem = JSON.parse(rem);
+    } catch (ex) {
+      return;
+    }
 
     this.push(rem);
   }
@@ -346,7 +368,7 @@ ChangesStream.prototype.preCleanup = function () {
 //
 // Cleanup the valuable internals, great for before a retry
 //
-ChangesStream.prototype.cleanup = function () {
+ChangesStream.prototype.cleanup = function handleCleanup() {
   debug('cleanup: flushing any possible buffer and killing underlying request');
   if (this.timer) {
     clearTimeout(this.timer);
@@ -361,15 +383,15 @@ ChangesStream.prototype.cleanup = function () {
   if (this.source && this.source.socket) {
     this.source.removeAllListeners();
     this.source.destroy();
-    this.source = null
+    this.source = null;
   }
 };
 
 //
 // Complete destroy the internals and end the stream
 //
-ChangesStream.prototype.destroy = function () {
-  debug('destroy the instance and end the stream')
+ChangesStream.prototype.destroy = function handleDestroy() {
+  debug('destroy the instance and end the stream');
   this._destroying = true;
   this.cleanup();
   this._decoder.end();
@@ -377,13 +399,6 @@ ChangesStream.prototype.destroy = function () {
   this.push(null);
 };
 
-//
-// Lol @_read
-//
-ChangesStream.prototype._read = function (n) {
-  this.resume();
-};
+module.exports = ChangesStream;
 
-function JDUP (obj) {
-  return JSON.parse(JSON.stringify(obj));
-}
+util.inherits(ChangesStream, Readable);

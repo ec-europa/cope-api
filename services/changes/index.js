@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 var ChangesStream = require('./changes-stream');
 var nock = require('nock');
 var request = require('request');
@@ -7,12 +8,13 @@ var database = process.env.DATABASE;
 var host = process.env.HOST;
 
 // Connect to CouchDB's changes feed
-var changes = new ChangesStream(host + '/' + database);
+var changes = new ChangesStream(host + '/' + database + '/_design/facade/_rewrite/beta/changes');
 
 // Trigger action on change
-changes.on('readable', function () {
+changes.on('readable', function handleChange() {
   // Read changes
   var change = changes.read();
+  var postData;
 
   // Extract data (or do whatever you want)
   console.info('Changes captured:');
@@ -22,12 +24,12 @@ changes.on('readable', function () {
   // ...
 
   // Mock subscriber's endpoint
-  var subscriber = nock('http://listener.com')
+  nock('http://listener.com')
     .post('/endpoint')
     .reply(202, 'SUCCESS');
 
   // Webhook
-  var postData = {
+  postData = {
     seq: change.seq
   };
 
@@ -37,7 +39,7 @@ changes.on('readable', function () {
     url: 'http://listener.com/endpoint',
     method: 'POST',
     json: postData
-  }, function (error, response, body) {
+  }, function handleResponse(error, response, body) {
     if (error) {
       console.error(error);
     }
