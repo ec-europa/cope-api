@@ -124,7 +124,7 @@ Build the development environment:
 docker-compose build
 ```
 
-Start it:
+Start the whole environment (CouchDB + Node.js push schema + changes listener):
 
 ```bash
 docker-compose up
@@ -134,6 +134,14 @@ Or start it as a daemon:
 
 ```bash
 docker-compose up -d
+```
+
+You can also start the services one by one (in different terminals for example):
+
+```
+docker-compose up couchdb
+docker-compose up nodejs
+docker-compose up changes
 ```
 
 When you're done, put it down:
