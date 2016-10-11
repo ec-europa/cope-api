@@ -17,6 +17,9 @@ function jdup(obj) {
   return JSON.parse(JSON.stringify(obj));
 }
 
+// Inherits from Readable
+util.inherits(ChangesStream, Readable); // eslint-disable-line no-use-before-define
+
 //
 // @ChangeStream
 // ## Constructor to initialize the changes stream
@@ -160,6 +163,7 @@ ChangesStream.prototype.request = function handleRequest() {
   if (payload) {
     this.req.write(payload);
   }
+
   this.req.end();
 };
 
@@ -399,6 +403,10 @@ ChangesStream.prototype.destroy = function handleDestroy() {
   this.push(null);
 };
 
-module.exports = ChangesStream;
+// Lol @_read
+//
+ChangesStream.prototype._read = function handleRead() {
+  this.resume();
+};
 
-util.inherits(ChangesStream, Readable);
+module.exports = ChangesStream;

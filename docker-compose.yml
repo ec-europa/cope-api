@@ -43,16 +43,12 @@ services:
     command: /docker-setup.sh
     environment:
       - NODE_ENV=development
-      - DATABASE
       - FACADE
-      - HOST
     volumes:
       - ./services/changes:/usr/src/app/
       - /usr/src/app/node_modules
     links:
       - couchdb
-    depends_on:
-      - nodejs
     networks:
       - cope-network
 

@@ -4,11 +4,12 @@ var nock = require('nock');
 var request = require('request');
 
 // Read environment variables
-var database = process.env.DATABASE;
-var host = process.env.HOST;
+var facade = process.env.FACADE;
 
 // Connect to CouchDB's changes feed
-var changes = new ChangesStream(host + '/' + database + '/_design/facade/_rewrite/beta/changes');
+var changes = new ChangesStream({
+  db: facade + '/beta/changes'
+});
 
 // Trigger action on change
 changes.on('readable', function handleChange() {
