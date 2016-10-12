@@ -6,3 +6,4 @@ node_modules
 bower_components
 config.json
 services/types/couchapp/lib/vendor
+npm-debug.log

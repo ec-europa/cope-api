@@ -215,25 +215,6 @@
     }
   },
   {
-    "from":"/beta/browser",
-    "to":"../service-remote-browser/_list/list_browser/browse_by_url",
-    "query":{
-      "limit":"1",
-      "key":":url"
-    },
-    "method":"GET",
-    "documentation":{
-      "title":"Get content preview from :url",
-      "description":"return a document preview for a given ?url=http://...",
-      "headers":{
-        "content-type":"application/json"
-      },
-      "params":{
-        ":url":"the url"
-      }
-    }
-  },
-  {
     "from":"/beta/display/teaser/:producer/:type",
     "to":"../service-display/_view/viewTeaserByProducerByschema",
     "query":{
@@ -316,6 +297,25 @@
     "from":"/beta/display/title",
     "to":"../service-display/_view/viewTeaserByProducerByschema",
     "method":"GET"
+  },
+  {
+    "from":"/beta/browser",
+    "to":"../service-display/_list/listBrowser/browseByUrl",
+    "query":{
+      "limit":"1",
+      "key":":url"
+    },
+    "method":"GET",
+    "documentation":{
+      "title":"Get content preview from :url",
+      "description":"return a document preview for a given ?url=http://...",
+      "headers":{
+        "content-type":"application/json"
+      },
+      "params":{
+        ":url":"the url"
+      }
+    }
   },
   {
     "from":"/beta/display/full/:producer/:type",
