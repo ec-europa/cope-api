@@ -67,13 +67,6 @@ npm run build:service-notification
 npm run push:service-notification
 ```
 
-### Remote browser
-
-```bash
-npm run build:service-remote-browser
-npm run push:service-remote-browser
-```
-
 ### Types
 
 Provide list of types and json schema
