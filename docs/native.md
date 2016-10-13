@@ -1,8 +1,6 @@
-# COPE API
+# Native
 
 ## Requirements
-
-Without Docker:
 
 -   Node.js >= v4
 -   CouchDB 2.0
@@ -15,13 +13,32 @@ Clone the project and then run the following command in order to get a working b
 npm install
 ```
 
-Also don't forget to start your CouchDB server.
+From here, we assume that your CouchDB server is running.
+
+In order to get the application running, we have to create an administrator and
+disable the secure rewrites. To do so, you can either copy the following .ini
+configuration file or open the configuration page in [Fauxton](http://127.0.0.1:5984/_utils/config.html), search for `secure_rewrites` and set it to `false`. Here's a sample of
+what our .ini configuration file looks like:
+
+```ini
+[admins]
+admin = pass
+
+[httpd]
+secure_rewrites = false
+```
+
+By default, some system databases are missing, you will have to create them manually:
+
+```bash
+curl -X PUT http://127.0.0.1:5984/_users
+curl -X PUT http://127.0.0.1:5984/_replicator
+curl -X PUT http://127.0.0.1:5984/_global_changes
+```
 
 ## Configuration
 
 The default configuration can be found in _config.dist.json_. You can override it by creating a local _config.json_. Make sure to correclty set your admin credentials in your _config.json_: they are needed for the build and the tests.
-
-Moreover, you will need to disable the `secure_rewrites` option from CouchDB. To do so, open the configuration page in Futon (`/_utils/config.html`), search for `secure_rewrites` and set it to `false`.
 
 ## Build
 
@@ -67,6 +84,13 @@ npm run build:service-notification
 npm run push:service-notification
 ```
 
+### Remote browser
+
+```bash
+npm run build:service-remote-browser
+npm run push:service-remote-browser
+```
+
 ### Types
 
 Provide list of types and json schema
@@ -101,6 +125,11 @@ You can start the tests with the following command:
 npm test
 ```
 
+## Listening for changes
+
+The changes listener is an independent service you must start yourself. After
+running `npm install`, you can start the service by simply typing `npm start`.
+
 ## Lint
 
 The code is linted is ESLint.
@@ -108,37 +137,3 @@ The code is linted is ESLint.
 ```bash
 npm run lint
 ```
-
-## Docker
-
-Build the development environment:
-
-```bash
-docker-compose build
-```
-
-Start it:
-
-```bash
-docker-compose up
-```
-
-Or start it as a daemon:
-
-```bash
-docker-compose up -d
-```
-
-When you're done, put it down:
-
-```bash
-docker-compose down
-```
-
-To develop, you can access the bash from the nodejs container:
-
-```bash
-docker-compose run --service-ports nodejs /bin/bash
-```
-
-For more information, please read our [Documentation](./docs/README.md).

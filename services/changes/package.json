@@ -1,0 +1,35 @@
+{
+  "name": "integration-layer-backend-changes",
+  "version": "0.1.0",
+  "description": "Integration Layer- Changes",
+  "scripts": {
+    "start": "node index.js",
+    "lint": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ec-europa/integration-layer-backend.git"
+  },
+  "keywords": [
+    "integration",
+    "layer",
+    "couchdb"
+  ],
+  "author": "European Commission",
+  "license": "EUPL-1.1",
+  "bugs": {
+    "url": "https://github.com/ec-europa/integration-layer-backend/issues"
+  },
+  "homepage": "https://github.com/ec-europa/integration-layer-backend#readme",
+  "devDependencies": {
+    "back": "~1.0.1",
+    "debug": "~2.2.0",
+    "eslint": "^3.7.1",
+    "eslint-config-airbnb-base": "^8.0.0",
+    "eslint-plugin-import": "^1.16.0",
+    "http-https": "~1.0.0",
+    "nock": "^8.1.0",
+    "readable-stream": "2.1.x",
+    "request": "^2.75.0"
+  }
+}

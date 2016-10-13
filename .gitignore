@@ -1,9 +1,31 @@
-*~
-.DS_Store
-.idea
-.tmp
+# Logs
+logs
+*.log
+npm-debug.log*
+npm-debug.log
+
+# Dependency directories
 node_modules
 bower_components
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# OS-specific files
+*~
+.DS_Store
+
+# Temporary folders
+.tmp
+
+# Local config
 config.json
+
+# Third-party dependencies
 services/types/couchapp/lib/vendor
-npm-debug.log
+
+# Editors
+.idea

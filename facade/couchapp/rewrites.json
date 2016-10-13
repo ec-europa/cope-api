@@ -411,6 +411,11 @@
     "method":"GET"
   },
   {
+    "from":"/beta/changes",
+    "to":"../../_changes",
+    "method":"GET"
+  },
+  {
     "from":"/beta/changes/types/:type/producers/:producer",
     "to":"../../_changes",
     "query":{
