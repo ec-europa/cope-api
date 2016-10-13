@@ -8,7 +8,7 @@
 bind_address = any
 
 [admins]
-admin = pass
+{{ .Env.USERNAME }} = {{ .Env.PASSWORD }}
 
 [httpd]
 secure_rewrites = false
