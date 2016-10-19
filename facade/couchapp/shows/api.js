@@ -17,7 +17,7 @@
       },
       body: ''.concat(
         '<html>',
-        '<head><link rel="stylesheet" href="beta/static/api.css"><script src="beta/static/api.js"></script></head>',
+        '<head><link rel="stylesheet" href="static/api.css"><script src="static/api.js"></script></head>',
         '<body><aside class="sidenav"></aside><div id="content">',
         (function writeDoc() {
           var content = '';
