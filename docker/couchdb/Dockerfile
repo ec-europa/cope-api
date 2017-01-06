@@ -4,8 +4,8 @@ FROM klaemo/couchdb:2.0.0
 RUN apt-get -y update && apt-get install -y wget
 
 # Install dockerize (https://github.com/jwilder/dockerize)
-RUN wget https://github.com/jwilder/dockerize/releases/download/v0.2.0/dockerize-linux-amd64-v0.2.0.tar.gz \
-    && tar -C /usr/local/bin -xvzf dockerize-linux-amd64-v0.2.0.tar.gz
+RUN wget https://github.com/jwilder/dockerize/releases/download/v0.3.0/dockerize-linux-amd64-v0.3.0.tar.gz \
+    && tar -C /usr/local/bin -xvzf dockerize-linux-amd64-v0.3.0.tar.gz
 
 # Copy local configuration
 # COPY local.ini /opt/couchdb/etc/

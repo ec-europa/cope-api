@@ -3,14 +3,14 @@
 # => All paths in this file are relative to the context! <=
 
 # Base image
-FROM node:argon
+FROM node:7.4.0
 
 # Configure container
 ENV NPM_CONFIG_LOGLEVEL warn
 
 # Install dockerize (https://github.com/jwilder/dockerize)
-RUN wget https://github.com/jwilder/dockerize/releases/download/v0.2.0/dockerize-linux-amd64-v0.2.0.tar.gz \
-    && tar -C /usr/local/bin -xvzf dockerize-linux-amd64-v0.2.0.tar.gz
+RUN wget https://github.com/jwilder/dockerize/releases/download/v0.3.0/dockerize-linux-amd64-v0.3.0.tar.gz \
+    && tar -C /usr/local/bin -xvzf dockerize-linux-amd64-v0.3.0.tar.gz
 
 # Create app directory
 RUN mkdir -p /usr/src/app
