@@ -94,7 +94,7 @@ exports.v1 = {
               type: 'array',
               items: {
                 type: 'string',
-                pattern: '[0-9A-Za-z-?! ]{1,256}$'
+                pattern: '^.{1,256}$'
               }
             }
           },
