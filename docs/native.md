@@ -3,6 +3,7 @@
 ## Requirements
 
 -   Node.js >= v4
+-   Yarn >= v0.18.1
 -   CouchDB 2.0
 
 ## Setup
@@ -10,7 +11,7 @@
 Clone the project and then run the following command in order to get a working build environment.
 
 ```bash
-npm install
+yarn install
 ```
 
 From here, we assume that your CouchDB server is running.
