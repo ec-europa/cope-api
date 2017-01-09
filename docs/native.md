@@ -114,7 +114,7 @@ For more details, you can see how we manage types' dependencies. We have defined
 
 ## Usage
 
-To start, follow the route exposed by the facade. By default, it should be [http://localhost:5984/ilayer/_design/facade/_rewrite/beta]()
+To start, follow the route exposed by the facade. By default, it should be [http://localhost:5984/ilayer/_design/facade/_rewrite/beta/](http://localhost:5984/ilayer/_design/facade/_rewrite/beta/). Please note that the final `/` is required in order to load the CSS & JS assets.
 
 ## Testing
 
