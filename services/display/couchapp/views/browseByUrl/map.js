@@ -8,8 +8,9 @@
 (function map(doc) {
   var origins;
   var values;
-  if (doc.producer && doc.producer_content_id && !doc.deleted_by_producer && doc.fields.origin) {
-    origins = doc.fields.origin;
+  if (doc.producer && doc.producer_content_id &&
+      !doc.deleted_by_producer && doc.fields.canonical_url) {
+    origins = doc.fields.canonical_url;
     values = {};
     values.default_language = doc.default_language;
     values.type = doc.type;

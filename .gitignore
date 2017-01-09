@@ -2,6 +2,7 @@
 logs
 *.log
 npm-debug.log*
+npm-debug.log
 
 # Dependency directories
 node_modules
@@ -25,3 +26,6 @@ config.json
 
 # Third-party dependencies
 services/types/couchapp/lib/vendor
+
+# Editors
+.idea

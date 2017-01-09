@@ -26,11 +26,6 @@ module.exports = function gruntConfig(grunt) {
           '.tmp/services/notification.json': 'services/notification/couchapp'
         }
       },
-      'service-remote-browser': {
-        files: {
-          '.tmp/services/remote-browser.json': 'services/remote-browser/couchapp'
-        }
-      },
       'service-types': {
         files: {
           '.tmp/services/types.json': 'services/types/couchapp'
@@ -60,11 +55,6 @@ module.exports = function gruntConfig(grunt) {
       'service-notification': {
         files: {
           '<%= settings.database %>': '.tmp/services/notification.json'
-        }
-      },
-      'service-remote-browser': {
-        files: {
-          '<%= settings.database %>': '.tmp/services/remote-browser.json'
         }
       },
       'service-types': {
