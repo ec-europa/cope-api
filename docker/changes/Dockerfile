@@ -9,8 +9,10 @@ FROM node:7.4.0
 ENV NPM_CONFIG_LOGLEVEL warn
 
 # Install dockerize (https://github.com/jwilder/dockerize)
-RUN wget https://github.com/jwilder/dockerize/releases/download/v0.3.0/dockerize-linux-amd64-v0.3.0.tar.gz \
-    && tar -C /usr/local/bin -xvzf dockerize-linux-amd64-v0.3.0.tar.gz
+ENV DOCKERIZE_VERSION v0.4.0
+RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
+    && tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
+    && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
 
 # Create app directory
 RUN mkdir -p /usr/src/app

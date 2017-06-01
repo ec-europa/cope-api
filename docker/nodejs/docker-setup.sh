@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Prepare schemas
-npm run prepare && npm run build
+npm run bootstrap && npm run build
 
 # Wait for CouchDB to be started
 dockerize -wait ${HOST} -timeout 10s
