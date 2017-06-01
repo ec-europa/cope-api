@@ -10,7 +10,7 @@ ENV NPM_CONFIG_LOGLEVEL warn
 ENV DOCKERIZE_VERSION v0.4.0
 
 # Install dockerize (https://github.com/jwilder/dockerize)
-RUN apk add --no-cache openssl curl
+RUN apk add --no-cache openssl curl git
 
 ENV DOCKERIZE_VERSION v0.4.0
 RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
