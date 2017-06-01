@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 # Prepare schemas
 npm run bootstrap && npm run build

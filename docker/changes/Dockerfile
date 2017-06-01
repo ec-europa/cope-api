@@ -3,16 +3,19 @@
 # => All paths in this file are relative to the context! <=
 
 # Base image
-FROM node:7.4.0
+FROM node:8-alpine
 
 # Configure container
 ENV NPM_CONFIG_LOGLEVEL warn
+ENV DOCKERIZE_VERSION v0.4.0
 
 # Install dockerize (https://github.com/jwilder/dockerize)
+RUN apk add --no-cache openssl
+
 ENV DOCKERIZE_VERSION v0.4.0
-RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
-    && tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
-    && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
+RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
+    && tar -C /usr/local/bin -xzvf dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
+    && rm dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz
 
 # Create app directory
 RUN mkdir -p /usr/src/app
