@@ -4,7 +4,7 @@ var nock = require('nock');
 var request = require('request');
 
 // Read environment variables
-var facade = process.env.FACADE;
+var facade = process.env.COPE_FACADE_URL;
 
 // Connect to CouchDB's changes feed
 var changes = new ChangesStream({

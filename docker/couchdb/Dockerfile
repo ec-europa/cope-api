@@ -11,8 +11,8 @@ RUN curl -SLO https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_
 COPY local.ini.tmpl /opt/couchdb/etc/local.ini.tmpl
 
 # Set default environment variables
-ENV USERNAME admin
-ENV PASSWORD pass
+ENV COPE_DB_USERNAME admin
+ENV COPE_DB_PASSWORD pass
 
 # Run dockerize and launch CouchDB
 CMD dockerize -template /opt/couchdb/etc/local.ini.tmpl:/opt/couchdb/etc/local.ini /opt/couchdb/bin/couchdb
