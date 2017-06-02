@@ -3,14 +3,19 @@
 # => All paths in this file are relative to the context! <=
 
 # Base image
-FROM node:argon
+FROM node:8-alpine
 
 # Configure container
 ENV NPM_CONFIG_LOGLEVEL warn
+ENV DOCKERIZE_VERSION v0.4.0
 
 # Install dockerize (https://github.com/jwilder/dockerize)
-RUN wget https://github.com/jwilder/dockerize/releases/download/v0.2.0/dockerize-linux-amd64-v0.2.0.tar.gz \
-    && tar -C /usr/local/bin -xvzf dockerize-linux-amd64-v0.2.0.tar.gz
+RUN apk add --no-cache openssl curl git
+
+ENV DOCKERIZE_VERSION v0.4.0
+RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
+    && tar -C /usr/local/bin -xzvf dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz \
+    && rm dockerize-alpine-linux-amd64-$DOCKERIZE_VERSION.tar.gz
 
 # COPY setup script
 COPY ./docker/nodejs/docker-setup.sh /
@@ -24,7 +29,8 @@ WORKDIR /usr/src/app
 
 # Install app dependencies
 COPY package.json /usr/src/app/
-RUN npm install
+COPY yarn.lock /usr/src/app/
+RUN yarn install
 
 # Bundle app source
 COPY . /usr/src/app

@@ -1,12 +1,12 @@
-version: '2'
+version: '3'
 
 services:
   couchdb:
     build: ./docker/couchdb
     container_name: cope-couchdb
     environment:
-      - USERNAME
-      - PASSWORD
+      - COPE_DB_USERNAME
+      - COPE_DB_PASSWORD
     networks:
       - cope-network
     expose:
@@ -22,11 +22,11 @@ services:
     environment:
       - NODE_ENV=development
       - DOCKER=true
-      - HOST
-      - USERNAME
-      - PASSWORD
-      - DOMAIN
-      - PORT
+      - COPE_DB_HOST
+      - COPE_DB_USERNAME
+      - COPE_DB_PASSWORD
+      - COPE_DB_DOMAIN
+      - COPE_DB_PORT
     volumes:
       - .:/usr/src/app/
       - /usr/src/app/node_modules
@@ -43,7 +43,7 @@ services:
     command: /docker-setup.sh
     environment:
       - NODE_ENV=development
-      - FACADE
+      - COPE_FACADE_URL
     volumes:
       - ./services/changes:/usr/src/app/
       - /usr/src/app/node_modules

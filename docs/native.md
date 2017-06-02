@@ -3,6 +3,7 @@
 ## Requirements
 
 -   Node.js >= v4
+-   Yarn >= v0.18.1
 -   CouchDB 2.0
 
 ## Setup
@@ -10,7 +11,7 @@
 Clone the project and then run the following command in order to get a working build environment.
 
 ```bash
-npm install
+yarn install
 ```
 
 From here, we assume that your CouchDB server is running.
@@ -45,7 +46,7 @@ The default configuration can be found in _config.dist.json_. You can override i
 If you want to build the whole project, run the two following commands. Otherwise, see further explanations.
 
 ```bash
-npm run prepare
+npm run bootstrap
 npm run build
 npm run push
 ```
@@ -96,19 +97,19 @@ npm run push:service-remote-browser
 Provide list of types and json schema
 
 ```bash
-npm run prepare:service-types
+npm run bootstrap:service-types
 npm run build:service-types
 npm run push:service-types
 ```
 
 ## Managing front-end dependencies
 
-We use Bower internally to manage front-end dependencies. Each service can have its own _bower.json_ - in which we declare the dependencies - and _.bowerrc_ to specify the directory in which we want to store the dependencies. We then use the `prepare:*` npm task to run the `bower install` command in the right place.
+We use Bower internally to manage front-end dependencies. Each service can have its own _bower.json_ - in which we declare the dependencies - and _.bowerrc_ to specify the directory in which we want to store the dependencies. We then use the `bootstrap:*` npm task to run the `bower install` command in the right place.
 
 For more details, you can see how we manage types' dependencies. We have defined a [bower.json](./services/types/bower.json) configuration file as well as a [.bowerrc](./services/types/.bowerrc) and we also have a npm script defined in [package.json](./package.json):
 
 ```json
-  "prepare:types": "cd types && bower install"
+  "bootstrap:types": "cd types && bower install"
 ```
 
 ## Usage
