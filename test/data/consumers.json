@@ -1,0 +1,7 @@
+[{
+  "_id": "org.couchdb.user:infosite",
+  "name": "infosite",
+  "type": "user",
+  "roles": [],
+  "password": "plaintext_password"
+}]

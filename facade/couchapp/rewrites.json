@@ -138,6 +138,57 @@
     }
   },
   {
+    "from":"/beta/subscriptions/consumer/:consumer",
+    "to":"../../../subscriptions/_design/service-subscriptions/_list/listSubscriptions/subscriptionsPerConsumer",
+    "method":"GET",
+    "query":{
+      "key":":consumer"
+    },
+    "documentation":{
+      "title":"Get subscriptions",
+      "description":"Return all the subscriptions for :consumer",
+      "headers":{
+        "Authorization":"basic",
+        "content-type":"application/json"
+      },
+      "params":{
+        ":consumer":" consumer"
+      }
+    }
+  },
+  {
+    "from":"/beta/subscriptions/",
+    "to":"../../../subscriptions/_design/service-subscriptions/_update/updateSubscription/",
+    "method":"POST",
+    "documentation":{
+      "title":"Post subscription",
+      "description":"Create a subscription",
+      "headers":{
+        "Authorization":"basic",
+        "content-type":"application/json"
+      },
+      "params":{
+        "data":"The document to be inserted"
+      }
+    }
+  },
+  {
+    "from":"/beta/subscriptions/:uuid",
+    "to":"../../../subscriptions/_design/service-subscriptions/_update/deleteSubscription/:uuid",
+    "method":"DELETE",
+    "documentation":{
+      "title":"Delete subscription",
+      "description":"Delete a subscription",
+      "headers":{
+        "Authorization":"basic",
+        "content-type":"application/json"
+      },
+      "params":{
+        "data":"The document to be inserted"
+      }
+    }
+  },
+  {
     "from":"/beta/uuid/:producer/:producer_id",
     "to":"../service-document/_view/uuid",
     "query":{

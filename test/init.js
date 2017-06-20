@@ -6,6 +6,7 @@ var config = require('../utils/config');
 var news = require('./data/news.json');
 var departments = require('./data/departments.json');
 var producers = require('./data/producers.json');
+var consumers = require('./data/consumers.json');
 
 describe('Prepare tests', function init() {
   var requestParams = {
@@ -32,6 +33,25 @@ describe('Prepare tests', function init() {
       return expect(returnedStatuses).to.not.include(false);
     });
   });
+
+  it('should create consumers', function createConsumers() {
+    var requestUrl = config.host + '/_users';
+    var multipleResponses = [];
+
+    consumers.forEach(function postConsumers(consumer) {
+      multipleResponses.push(chakram.post(requestUrl, consumer, requestParams));
+    });
+
+    return chakram.all(multipleResponses).then(function handleResponses(responses) {
+      var returnedStatuses = responses.map(function mapResponse(response) {
+        // 201: created, 409: conflict (already exists)
+        return response.response.statusCode === 201 || response.response.statusCode === 409;
+      });
+
+      return expect(returnedStatuses).to.not.include(false);
+    });
+  });
+
 
   it('should create test news', function createNews() {
     var requestUrl = config.baseUrl + '/beta/docs/types/news';
