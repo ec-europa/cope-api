@@ -47,7 +47,7 @@ docker-compose up changes
 To develop, you can access the bash from the nodejs container:
 
 ```bash
-docker-compose run --service-ports nodejs /bin/bash
+docker-compose run --service-ports nodejs /bin/sh
 ```
 
 ## Shutting it down
