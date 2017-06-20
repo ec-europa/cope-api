@@ -1,16 +1,14 @@
 var chakram = require('chakram');
 var expect = chakram.expect;
 var config = require('../utils/config');
-var merge = require('lodash').merge;
 
 // Load sample data
 var testSubscriptionsData = require('./data/subscriptions.json');
 
 // Load consumers
-var consumers = require('./data/consumers.json'); //TODO consider all of them as users
+var consumers = require('./data/consumers.json'); // TODO consider all of them as users
 
 describe('Subscriptions API', function schemasAPI() {
-
   describe('POST /beta/subscriptions/ ~ as anonymous', function consumerTests() {
     var consumerType;
 
@@ -91,4 +89,4 @@ describe('Subscriptions API', function schemasAPI() {
       return expect(apiResponse).to.have.status(200);
     });
   });
-})
+});

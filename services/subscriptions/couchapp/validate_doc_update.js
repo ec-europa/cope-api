@@ -6,7 +6,6 @@
  * @param userCtx the current user
  */
 (function validate(newDoc, oldDoc, userCtx) {
-
   // is the user authenticated ?
   if (!userCtx.name) {
     throw ({
@@ -39,5 +38,4 @@
       forbidden: 'The endpoint is missing.'
     });
   }
-
 });
