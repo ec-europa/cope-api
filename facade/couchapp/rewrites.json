@@ -152,9 +152,14 @@
         "content-type":"application/json"
       },
       "params":{
-        ":consumer":" consumer"
+        ":consumer":" the consumer id"
       }
     }
+  },
+  {
+    "from":"/beta/subscriptions/subscribers",
+    "to":"../../../subscriptions/_find",
+    "method":"POST"
   },
   {
     "from":"/beta/subscriptions/",
@@ -184,7 +189,7 @@
         "content-type":"application/json"
       },
       "params":{
-        "data":"The document to be inserted"
+        "data":"The document to be deleted"
       }
     }
   },

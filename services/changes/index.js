@@ -22,7 +22,33 @@ changes.on('readable', function handleChange() {
   console.info(change);
 
   // Filter subscribers
-  // ...
+  request({
+    url: facade + '/beta/subscriptions/subscribers/',
+    method: 'POST',
+    json: {
+      selector: {
+        type: {
+          $or: ['news', { $exists: false }]
+        },
+        producer: {
+          $or: ['prd', { $exists: false }]
+        },
+        theme: {
+          $or: ['energy', { $exists: false }]
+        },
+        endpoint: { $exists: true }
+      },
+      fields: ['theme', 'type', 'producer', '_id', 'consumer', 'endpoint']
+    }
+  }, function handleResponse(error, response, body) {
+    if (error) {
+      console.error(error);
+    }
+
+    if (!error) {
+      console.log('Subscribers ' + response.statusCode + ' : ' + JSON.stringify(body));
+    }
+  });
 
   // Mock subscriber's endpoint
   nock('http://listener.com')

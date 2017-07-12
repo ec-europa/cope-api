@@ -17,7 +17,7 @@
   }
 
   // append deleted_by_producer to the document
-  doc.deleted_by_producer = true;
+  doc._deleted = true;
 
   return [doc, {
     code: 200,
