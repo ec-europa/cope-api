@@ -118,6 +118,21 @@
     }
   },
   {
+    "from":"/beta/docs/:uuid",
+    "to":"../service-document/_show/showDocs/:uuid",
+    "method":"GET",
+    "documentation":{
+      "title":"Get docs",
+      "description":"Fetch a given doc based on :uuid",
+      "headers":{
+        "content-type":"application/json"
+      },
+      "params":{
+        ":uuid":"The unique id of the doc to be retrieved"
+      }
+    }
+  },
+  {
     "from":"/beta/schema/:type/:version",
     "to":"../service-types/_show/showSchema",
     "query":{
