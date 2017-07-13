@@ -118,6 +118,21 @@
     }
   },
   {
+    "from":"/beta/docs/:uuid",
+    "to":"../service-document/_show/showDocs/:uuid",
+    "method":"GET",
+    "documentation":{
+      "title":"Get docs",
+      "description":"Fetch a given doc based on :uuid",
+      "headers":{
+        "content-type":"application/json"
+      },
+      "params":{
+        ":uuid":"The unique id of the doc to be retrieved"
+      }
+    }
+  },
+  {
     "from":"/beta/schema/:type/:version",
     "to":"../service-types/_show/showSchema",
     "query":{
@@ -134,6 +149,62 @@
       "params":{
         ":type":"content type name",
         ":version":"version number"
+      }
+    }
+  },
+  {
+    "from":"/beta/subscriptions/consumer/:consumer",
+    "to":"../../../subscriptions/_design/service-subscriptions/_list/listSubscriptions/subscriptionsPerConsumer",
+    "method":"GET",
+    "query":{
+      "key":":consumer"
+    },
+    "documentation":{
+      "title":"Get subscriptions",
+      "description":"Return all the subscriptions for :consumer",
+      "headers":{
+        "Authorization":"basic",
+        "content-type":"application/json"
+      },
+      "params":{
+        ":consumer":" the consumer id"
+      }
+    }
+  },
+  {
+    "from":"/beta/subscriptions/subscribers",
+    "to":"../../../subscriptions/_find",
+    "method":"POST"
+  },
+  {
+    "from":"/beta/subscriptions/",
+    "to":"../../../subscriptions/_design/service-subscriptions/_update/updateSubscription/",
+    "method":"POST",
+    "documentation":{
+      "title":"Post subscription",
+      "description":"Create a subscription",
+      "headers":{
+        "Authorization":"basic",
+        "content-type":"application/json"
+      },
+      "params":{
+        "data":"The document to be inserted"
+      }
+    }
+  },
+  {
+    "from":"/beta/subscriptions/:uuid",
+    "to":"../../../subscriptions/_design/service-subscriptions/_update/deleteSubscription/:uuid",
+    "method":"DELETE",
+    "documentation":{
+      "title":"Delete subscription",
+      "description":"Delete a subscription",
+      "headers":{
+        "Authorization":"basic",
+        "content-type":"application/json"
+      },
+      "params":{
+        "data":"The document to be deleted"
       }
     }
   },

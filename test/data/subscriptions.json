@@ -1,0 +1,6 @@
+[{
+  "endpoint": "https://www.ec.europa.eu/info/api/v1/notifications",
+  "producer": "prd",
+  "type": "news",
+  "theme": "energy"
+}]

@@ -1,6 +1,7 @@
 {
   "host": "http://localhost:5984",
   "database": "http://localhost:5984/ilayer",
+  "database_subscriptions": "http://localhost:5984/subscriptions",
   "baseUrl": "http://localhost:5984/ilayer/_design/facade/_rewrite",
   "admin": {
     "username": "admin",

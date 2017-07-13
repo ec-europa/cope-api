@@ -13,6 +13,8 @@
     "push:service-notification": "grunt couch-push:service-notification",
     "build:service-remote-browser": "grunt couch-compile:service-remote-browser",
     "push:service-remote-browser": "grunt couch-push:service-remote-browser",
+    "build:service-subscriptions": "grunt couch-compile:service-subscriptions",
+    "push:service-subscriptions": "grunt couch-push:service-subscriptions",
     "bootstrap:service-types": "cd services/types && bower install --allow-root",
     "build:service-types": "grunt couch-compile:service-types",
     "push:service-types": "grunt couch-push:service-types",
